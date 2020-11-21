@@ -1,0 +1,20 @@
+.top-border {
+    background: linear-gradient(to right, #005086, #B0CAC7);
+    height: 5px;
+}
+
+.bottom-border {
+    background: linear-gradient(to right, #B0CAC7, #005086);
+    height: 5px;
+}
+
+.des-stat {
+    border-top-style: solid;
+    border-top-color: #318FB5;
+    border-top-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: #B0CAC7;
+    border-bottom-width: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
