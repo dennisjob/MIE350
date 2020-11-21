@@ -11,6 +11,8 @@ public class Post {
 	private String content;
 	private String url;
 	
+	public Post() { }
+	
 	public Post(int postId, int groupId, int authorId, Timestamp postTime, String content, String url) {
 		this.postId = postId;
 		this.groupId = groupId;
@@ -24,24 +26,48 @@ public class Post {
 		return postId;
 	}
 	
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+	
 	public int getGroupId() {
 		return groupId;
+	}
+	
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
 	}
 	
 	public int getAuthorId() {
 		return authorId;
 	}
 	
+	public void setAuthorId (int authorId) {
+		this.authorId = authorId;
+	}
+	
 	public Timestamp getPostedTime() {
 		return postTime;
+	}
+	
+	public void setPostedTime (Timestamp postTime) {
+		this.postTime = postTime;
 	}
 	
 	public String getContent() {
 		return content;
 	}
 	
+	public void setContent (String content) {
+		this.content = content;
+	}
+	
 	public String getUrl() {
 		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 	@Override
