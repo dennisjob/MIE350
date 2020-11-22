@@ -1,12 +1,12 @@
 package com.mie.model;
-import java.sql.Timestamp;
+import java.sql.Date;
 public class Application {
 	
 	private int appId;
 	private int companyId;
 	private int userId;
 	private String url;
-	private Timestamp deadline;
+	private Date deadline;
 	private int interview;
 	private int joboffer;
 	private String industry;
@@ -14,7 +14,7 @@ public class Application {
 	
 	public Application(){}
 	
-	public Application(int appId, int companyId, int userId, String url, Timestamp deadline, int interview, int joboffer, String industry, String position) {
+	public Application(int appId, int companyId, int userId, String url, Date deadline, int interview, int joboffer, String industry, String position) {
 		this.appId = appId;
 		this.companyId = companyId;
 		this.userId = userId;
@@ -52,10 +52,10 @@ public class Application {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public Timestamp getDeadline(){
+	public Date getDeadline(){
 		return deadline;
 	}
-	public void setDeadline(Timestamp deadline){
+	public void setDeadline(Date deadline){
 		this.deadline = deadline;
 	}
 	public int getInterview(){

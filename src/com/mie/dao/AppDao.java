@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.mie.model.Application;
 import com.mie.util.DbUtil;
-import java.sql.Timestamp;
+import java.sql.Date;
 public class AppDao {
 	private Connection connection;
 
@@ -26,7 +26,7 @@ public class AppDao {
 			preparedStatement.setInt(2, app.getCompanyId());
 			preparedStatement.setInt(3, app.getUserId());
 			preparedStatement.setString(4, app.getUrl());
-			preparedStatement.setTimestamp(5, app.getDeadline());
+			preparedStatement.setDate(5, app.getDeadline());
 			preparedStatement.setInt(6, app.getInterview());
 			preparedStatement.setInt(7, app.getJob());
 			preparedStatement.setString(8, app.getIndustry());
@@ -58,7 +58,7 @@ public class AppDao {
 			preparedStatement.setInt(1, app.getCompanyId());
 			preparedStatement.setInt(2, app.getUserId());
 			preparedStatement.setString(3, app.getUrl());
-			preparedStatement.setTimestamp(4, app.getDeadline());
+			preparedStatement.setDate(4, app.getDeadline());
 			preparedStatement.setInt(5, app.getInterview());
 			preparedStatement.setInt(6, app.getJob());
 			preparedStatement.setString(7, app.getIndustry());
@@ -83,7 +83,7 @@ public class AppDao {
 				app.setCompanyId(rs.getInt("CompID"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
-				app.setDeadline(rs.getTimestamp("AppDeadline"));
+				app.setDeadline(rs.getDate("AppDeadline"));
 				app.setInterview(rs.getInt("InterOffer"));
 				app.setJob(rs.getInt("JobOffer"));
 				app.setIndustry(rs.getString("Industry"));
@@ -111,7 +111,7 @@ public class AppDao {
 				app.setCompanyId(rs.getInt("CompID"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
-				app.setDeadline(rs.getTimestamp("AppDeadline"));
+				app.setDeadline(rs.getDate("AppDeadline"));
 				app.setInterview(rs.getInt("InterOffer"));
 				app.setJob(rs.getInt("JobOffer"));
 				app.setIndustry(rs.getString("Industry"));
@@ -138,7 +138,7 @@ public class AppDao {
 				app.setCompanyId(rs.getInt("CompID"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
-				app.setDeadline(rs.getTimestamp("AppDeadline"));
+				app.setDeadline(rs.getDate("AppDeadline"));
 				app.setInterview(rs.getInt("InterOffer"));
 				app.setJob(rs.getInt("JobOffer"));
 				app.setIndustry(rs.getString("Industry"));
@@ -150,7 +150,7 @@ public class AppDao {
 
 		return app;
 	}
-	public Application getApplcation(int compid, int userid, String url, Timestamp deadline, int interview, int joboffer, String industry, String position){
+	public Application getApplication(int compid, int userid, String url, Date deadline, int interview, int joboffer, String industry, String position){
 		Application app = new Application();
 		try{
 			PreparedStatement preparedStatement = connection
@@ -158,7 +158,7 @@ public class AppDao {
 			preparedStatement.setInt(1, compid);
 			preparedStatement.setInt(2, userid);
 			preparedStatement.setString(3, url);
-			preparedStatement.setTimestamp(4, deadline);
+			preparedStatement.setDate(4, deadline);
 			preparedStatement.setInt(5, interview);
 			preparedStatement.setInt(6, joboffer);
 			preparedStatement.setString(7, industry);
@@ -170,7 +170,7 @@ public class AppDao {
 				app.setCompanyId(rs.getInt("CompID"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
-				app.setDeadline(rs.getTimestamp("AppDeadline"));
+				app.setDeadline(rs.getDate("AppDeadline"));
 				app.setInterview(rs.getInt("InterOffer"));
 				app.setJob(rs.getInt("JobOffer"));
 				app.setIndustry(rs.getString("Industry"));
