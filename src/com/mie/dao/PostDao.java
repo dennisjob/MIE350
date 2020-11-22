@@ -11,7 +11,7 @@ import java.util.List;
 import com.mie.model.Post;
 import com.mie.model.User;
 import com.mie.util.DbUtil;
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class PostDao {
 	private Connection connection;
@@ -111,7 +111,7 @@ public class PostDao {
 		return posts;
 	}
 	
-	public List<Post> getUSerPosts(Integer userId) {
+	public List<Post> getUserPosts(Integer userId) {
 		List<Post> posts = new ArrayList<Post>();
 		try {
 			Statement statement = connection.createStatement();
@@ -133,7 +133,7 @@ public class PostDao {
 		return posts;
 	}
 		
-	public Post getPost(Integer authorId, java.sql.Timestamp postTime, String content, String url) {
+	public Post getPost(Integer authorId, Timestamp postTime, String content, String url) {
 		Post post = new Post();
 		try {
 			PreparedStatement preparedStatement = connection
