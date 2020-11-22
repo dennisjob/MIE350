@@ -23,7 +23,7 @@ public class RoundDao {
 	
 	public void addRound(Round round) {
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("insert into Assessment(AssessType, Date, Location, JobAppID, UserID, CompID, AssessName) values (?, ?, ?, ?, ?, ?, ?");
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into Assessment(AssessType, Date, Location, JobAppID, UserID, CompID, AssessName) values (?, ?, ?, ?, ?, ?, ?)");
 			
 			preparedStatement.setString(1, round.getRoundType());
 			preparedStatement.setTimestamp(2, round.getDateTime());
@@ -175,8 +175,8 @@ public class RoundDao {
 				round.setAssessorName(rs.getString("AssessName"));
 			}
 		}
-	 catch (SQLException e) {
-		e.printStackTrace();
+			catch (SQLException e) {
+				e.printStackTrace();
 	}
 		return round;
 	}
