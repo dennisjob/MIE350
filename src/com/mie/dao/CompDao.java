@@ -135,7 +135,7 @@ public class CompDao {
 
 		return comp;
 	}
-	public Company getApplcation(int userid, String name, String url, String connect){
+	public Company getApplication(int userid, String name, String url, String connect){
 		Company comp = new Company();
 		try{
 			PreparedStatement preparedStatement = connection
