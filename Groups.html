@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- IMPORTS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<nav class="navbar navbar-expand-lg"
+    style="padding-top: 25px; padding-bottom: 25px; background-color: #b0cac7; box-shadow: 0px 12px 10px -5px rgba(0,0,0,0.15);">
+    <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="Logo" style="height: 56px; width: 245px;">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="fas fa-chevron-circle-down fa-lg" style="color: #001244;"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="padding-right:200px;"><a class="nav-link" href="#home" style="color: #005086"><i
+                        class="fas fa-home"></i> Welcome</a></li>
+            <li class="nav-item" style="padding-right:200px;"><a class="nav-link" href="#sign_in"
+                    style="color: #005086"><i class="fas fa-sign-in-alt"></i> Sign Out</a> </li>
+            <li class="nav-item"><a class="nav-link" href="#about" style="color: #005086"><i class="fas fa-users"></i>
+                    About Us</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+
+    <!-- The far left of the page-->
+    <div class="row">
+        <!-- The far left of the page-->
+        <div class="col-1" style="background-color:#F7D6BF; min-height: 100vh;"> background-color
+            <!-- This is background fill-->
+        </div>
+        <!-- The Section housing groups on the page-->
+        <div class="col-3" style="background-color:#318FB5; min-height: 100vh;">
+            <h1> Groups
+                <button type="button" class="fas fa-plus" data-toggle="modal" data-target="#GroupsAdd"
+                    style="background-color:#318FB5;">
+                </button>
+                <!-- The Modal -->
+                <div class="modal" id="GroupsAdd">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Groups</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#GroupsAdd">
+                                    Create Group
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#GroupsAdd">
+                                    Join Groups
+                                </button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#GroupsAdd">
+                                    Filter Existing Group
+                                </button>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--POSSIBLE SEARCH BAR <nav class="navbar navbar-expand-sm bg-blue navbar-light">
+                    <form class="form-inline" action="/action_page.php">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </nav> -->
+                <!-- A vertical navbar -->
+                <!-- The Modal -->
+                <div class="modal" id="EditGroup">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Group</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#EditGroup">
+                                    Delete Group
+                                </button> <!--TODO-->
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="navbar bg-blue">
+
+                    <!-- Links -->
+                    <ul class="navbar-nav">
+                        <div class="modal" id="EditGroup">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+        
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Group</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+        
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        <button type="button" class="btn btn-primary" data-toggle="."
+                                            data-target="#EditGroup">
+                                            Delete Group
+                                        </button> <!--TODO-->
+                                    </div>
+        
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <li class="nav-item" style="background-color: ivory;">
+                            <a class="nav-link" href="#">Group 1 
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 2 
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 3 
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 4 
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 5 
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 6
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 7
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 8
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 9
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 10
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 11
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 12
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 13
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 14
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+                            <a class="nav-link" href="#">Group 15
+                                <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
+                                    data-target="#EditGroup" style="background-color:ivory;">
+                                </button>
+                            </a>
+
+                        </li>
+                    </ul>
+
+                </nav>
+        </div>
+        <div class="col-1" style="background-color:#F7D6BF;  min-height: 100vh;">background-color
+
+        </div>
+        <div class="col-6" style="background-color:#56CCF2;  min-height: 100vh;"> Implement DB table with Bushi
+
+
+
+        </div>
+        <div class="col-1" style="background-color:#F7D6BF;  min-height: 100vh;">background-color
+
+        </div>
+    </div>
+</div>
+
+</html>
