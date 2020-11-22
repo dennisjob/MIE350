@@ -1,42 +1,56 @@
 package com.mie.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Group {
 	
 	private int groupId;
 	private String name;
-	private String accessCode;
-	private ArrayList<String> membersList;
+	private int accessCode;
+	private int numMembers;
 	
-	public Group(int groupId, String name, String accessCode, String members) {
-		this.groupId = groupId;
+	public Group() { }
+	
+	public Group(String name, int accessCode, int numMembers) {
 		this.name = name;
 		this.accessCode = accessCode;
-		membersList = new ArrayList<String>(Arrays.asList(members.split(",")));
+		this.numMembers = numMembers;
 	}
 	
 	public int getGroupId() {
 		return groupId;
 	}
 	
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	
 	public String getName() {
 		return name;
 	}
 	
-	public String getAccessCode() {
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getAccessCode() {
 		return accessCode;
 	}
 	
-	public ArrayList<String> getMembersList() {
-		return membersList;
+	public void setAccessCode(int accessCode) {
+		this.accessCode = accessCode;
+	}
+	
+	public int getNumMembers() {
+		return numMembers;
+	}
+	
+	public void setNumMembers(int numMembers) {
+		this.numMembers = numMembers;
 	}
 	
 	@Override
 	public String toString() {
 		return "Group [groupId=" + groupId + ", name=" + name
-				+ ", accessCode=" + accessCode + ", membersList=" + membersList + "]";
+				+ ", accessCode=" + accessCode + ", numMembers=" + numMembers + "]";
 	}
 
 }
