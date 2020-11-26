@@ -29,13 +29,13 @@
 	</servlet-mapping>
 	<servlet>
 		<description></description>
-		<display-name>LoginController</display-name>
-		<servlet-name>LoginController</servlet-name>
-		<servlet-class>com.mie.controller.LoginController</servlet-class>
+		<display-name>LoginServlet</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.mie.controller.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>LoginController</servlet-name>
-		<url-pattern>/LoginController</url-pattern>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<description></description>
@@ -48,6 +48,6 @@
 		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<session-timeout>15</session-timeout>
+		<session-timeout>25</session-timeout>
 	</session-config>
 </web-app>
