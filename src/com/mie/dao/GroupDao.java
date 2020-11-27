@@ -170,4 +170,22 @@ public class GroupDao {
 		return group;
 	}
 	
+	public boolean accessCodeExists(int accessCode) {
+		boolean exists = false;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from Groups where AccessCode=?");
+			preparedStatement.setInt(1, accessCode);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				exists = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return exists;
+	}
+	
 }
