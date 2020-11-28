@@ -21,9 +21,9 @@ public class AppDao {
 	public void addApplication(Application app) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into JobApplication(JobAppID,CompID,UserID,LinktoApp,AppDeadline,InterOffer,JobOffer,Industry,Position) values (?, ?, ?, ?, ?, ?, ?, ?, ? )");
+					.prepareStatement("insert into JobApplication(JobAppID,CompName,UserID,LinktoApp,AppDeadline,InterOffer,JobOffer,Industry,Position) values (?, ?, ?, ?, ?, ?, ?, ?, ? )");
 			preparedStatement.setInt(1, app.getAppId());
-			preparedStatement.setInt(2, app.getCompanyId());
+			preparedStatement.setString(2, app.getCompany());
 			preparedStatement.setInt(3, app.getUserId());
 			preparedStatement.setString(4, app.getUrl());
 			preparedStatement.setDate(5, app.getDeadline());
@@ -53,9 +53,9 @@ public class AppDao {
 	public void updateApplication(Application app) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("update JobApplication set CompID=?, UserID=?, LinktoApp=?, AppDeadline=?, InterOffer=?, JobOffer=?, Industry=?, Position=?"
+					.prepareStatement("update JobApplication set CompName=?, UserID=?, LinktoApp=?, AppDeadline=?, InterOffer=?, JobOffer=?, Industry=?, Position=?"
 							+ " where JobAppID=?");
-			preparedStatement.setInt(1, app.getCompanyId());
+			preparedStatement.setString(1, app.getCompany());
 			preparedStatement.setInt(2, app.getUserId());
 			preparedStatement.setString(3, app.getUrl());
 			preparedStatement.setDate(4, app.getDeadline());
@@ -80,7 +80,7 @@ public class AppDao {
 			while (rs.next()) {
 				Application app = new Application();
 				app.setAppId(rs.getInt("JobAppID"));
-				app.setCompanyId(rs.getInt("CompID"));
+				app.setCompany(rs.getString("CompName"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
 				app.setDeadline(rs.getDate("AppDeadline"));
@@ -108,7 +108,7 @@ public class AppDao {
 			if (rs.next()) {
 				Application app = new Application();
 				app.setAppId(rs.getInt("JobAppId"));
-				app.setCompanyId(rs.getInt("CompID"));
+				app.setCompany(rs.getString("CompName"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
 				app.setDeadline(rs.getDate("AppDeadline"));
@@ -135,7 +135,7 @@ public class AppDao {
 
 			if (rs.next()) {
 				app.setAppId(rs.getInt("JobAppID"));
-				app.setCompanyId(rs.getInt("CompID"));
+				app.setCompany(rs.getString("CompName"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
 				app.setDeadline(rs.getDate("AppDeadline"));
@@ -150,12 +150,12 @@ public class AppDao {
 
 		return app;
 	}
-	public Application getApplication(int compid, int userid, String url, Date deadline, int interview, int joboffer, String industry, String position){
+	public Application getApplication(String comp, int userid, String url, Date deadline, int interview, int joboffer, String industry, String position){
 		Application app = new Application();
 		try{
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from JobApplication where CompID=?, UserID=?, LinktoApp=?, AppDeadline=?, InterOffer=?, JobOffer=?, Industry=?, Position=?");
-			preparedStatement.setInt(1, compid);
+					.prepareStatement("select * from JobApplication where CompName=?, UserID=?, LinktoApp=?, AppDeadline=?, InterOffer=?, JobOffer=?, Industry=?, Position=?");
+			preparedStatement.setString(1, comp);
 			preparedStatement.setInt(2, userid);
 			preparedStatement.setString(3, url);
 			preparedStatement.setDate(4, deadline);
@@ -167,7 +167,7 @@ public class AppDao {
 			
 			if (rs.next()) {
 				app.setAppId(rs.getInt("JobAppID"));
-				app.setCompanyId(rs.getInt("CompID"));
+				app.setCompany(rs.getString("CompName"));
 				app.setUserId(rs.getInt("UserID"));
 				app.setUrl(rs.getString("LinktoApp"));
 				app.setDeadline(rs.getDate("AppDeadline"));
