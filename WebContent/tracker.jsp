@@ -130,7 +130,7 @@
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-
+	<%@ include file="navbar.jsp"%>
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-sm-1" id="myScrollspy">
