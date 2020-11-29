@@ -46,7 +46,7 @@ public class PostServlet extends HttpServlet {
 			
 		} else if (action.equalsIgnoreCase("create")) {
 			Post post = new Post();
-			post.setPostId(createPostId());
+			
 			post.setGroupId(Integer.parseInt(request.getParameter("groupId")));
 			post.setAuthorId(Integer.parseInt(request.getParameter("authorId")));
 			post.setPostedTime(Timestamp.valueOf(request.getParameter("postedTime")));
@@ -64,18 +64,6 @@ public class PostServlet extends HttpServlet {
 		
 	}
 	
-	public int createPostId() {
-		PostDao dao = new PostDao();
-		boolean exists = true;
-		int postID = 0;
-
-		do {
-			postID = (int)(Math.random() * (2147483647 + 1)); // 2147483647 is the max. value for a Long Integer in MS Access
-			exists = dao.postIdExists(postID);
-		} while (exists);
-
-		return postID;
-	}
 	
 
 }
