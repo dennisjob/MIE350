@@ -20,7 +20,7 @@ public class PostDao {
 		connection = DbUtil.getConnection();
 	}
 	
-	public void addPst(Post post) {
+	public void addPost(Post post) {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("insert into Posts(PostID,PostTime,UserID,GroupID,PostContent,LinkToPost) values (?, ?, ?, ?, ?, ?)");
@@ -180,7 +180,23 @@ public class PostDao {
 		return post;
 	}
 	
-	
+	public boolean postIdExists(int postId) {
+		boolean exists = false;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from Posts where PostID=?");
+			preparedStatement.setInt(1, postId);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				exists = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return exists;
+	}
 	
 	
 	
