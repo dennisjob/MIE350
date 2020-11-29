@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.mie.model.Application;
 import com.mie.util.DbUtil;
+
 import java.sql.Date;
 public class AppDao {
 	private Connection connection;
@@ -180,5 +182,23 @@ public class AppDao {
 			e.printStackTrace();
 		}
 		return app;
+	}
+	
+	public HashMap<String, Integer> getGroupedAppCounts(String col) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select " + col + ", Count(" + col + ") as Count from JobApplication group by " + col + ";");
+			
+			while (rs.next()) {
+				String str = rs.getString(col);
+				int count = rs.getInt("Count");
+				map.put(str, count);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
 	}
 }
