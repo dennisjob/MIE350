@@ -48,14 +48,11 @@
 	  body {
 	    position: relative;
 	  }
+
 	  ul.nav-pills {
 	    top: 20px;
-	    position: fixed;
 	    color: #001244;
 
-	  }
-	  .col-sm-1{
-	  	background-color: #F7D6BF;
 	  }
 
 	  .tbtrack{
@@ -83,6 +80,20 @@
 	  .icon {
    		color: #001244 !important
 		}
+
+	  .navbar{
+	  	position:fixed;
+	  	height: 100%;
+    	background-color: #F7D6BF;
+    	align-items: normal;
+
+	   }
+
+	   .body{
+	   	margin-left: 175px;
+	   	width: 100%;
+	   	padding-right: 15px;
+	   }
 
 	  table.dataTable thead .sorting:after,
  	  table.dataTable thead .sorting:before,
@@ -131,10 +142,10 @@
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
-	<div class="container-fluid">
-		<div class="row">
-			<nav class="col-sm-1" id="myScrollspy">
-				    <ul class="nav nav-pills flex-column custom" style="margin-top:20px">
+	<%@ include file="navbar.jsp"%>
+
+	<nav class = "navbar" id="myScrollspy" >
+				    <ul class="nav nav-pills flex-column custom">
 				      <li class="nav-item">
 				        <a class="nav-link active" href="#Applications">Applications</a>
 				      </li>
@@ -148,7 +159,11 @@
 				    <hr class="d-sm-none">
 		    </nav>
 
-		    <div class="col-sm-11">	
+	<div class="container-fluid">
+		<div class="row">
+			
+
+		    <div class="body">	
 	      	  <h2 class="display-4 text-left" id="title" >Personal Tracker</h2>
 	       	  <hr>
 		      <br>
@@ -182,10 +197,12 @@
 
 
 									  <div class="modal-body">
-									    <div class="form-group">
-				    					  <label for="ApplicationID">Application ID</label>
-				    					  <input class="form-control" id="ApplicationID">
-				  						</div>
+									    <form action="#" class = "appidform">
+										    <div class="form-group">
+					    					  <label for="ApplicationID">Application ID</label>
+					    					  <input class="form-control" id="ApplicationID">
+					  						</div>
+					  					</form>
 									  </div>
 
 
@@ -203,10 +220,12 @@
 				      				  </div>
 
 									  <div class="modal-body">
+									   <form action="#" class = "assidform">
 									    <div class="form-group">
 				    						<label for="AssessmentID">Assessment ID</label>
 				    						<input class="form-control" id="AssessmentID">
 				  						</div>
+				  					   </form>	
 									  </div>
 
 								      <div class="modal-footer">
@@ -223,10 +242,12 @@
 					      				</div>
 
 									    <div class="modal-body">
+									     <form action="#" class = "compidform">	
 									      <div class="form-group">
 				    						<label for="CompanyID">Company ID</label>
 				    						<input class="form-control" id="CompanyID">
 				  						  </div>
+				  						 </form> 
 									    </div>
 
 								        <div class="modal-footer">
@@ -268,16 +289,18 @@
 				      			    </div>
 
 								    <div class="modal-body">
+								     <form action="#" class = "appupform">		
 								      <div class="form-group">
 			    						<label for="ApplicationID">Application ID</label>
 			    						<input class="form-control" id="ApplicationID">
-			    						<label for="UpPosition">Updated Position</label>
-			    						<input class="form-control" id="UpPosition">
 			    						<label for="UpCompany">Updated Company</label>
 			    						<input class="form-control" id="UpCompany">
 			    						<label for="UpLink">Updated Link</label>
 			    						<input class="form-control" id="UpLink">
-
+			    						<label for="UpDeadline">Updated Deadline</label>
+			    						<input class="form-control" id="UpDeadline">
+			    					
+			    						<br>
 			    						<div class="form-check">
 				    						<input class="form-check-input" type="checkbox" value="" id="UpIn">
 				    						<label class="form-check-label" for="UpIn">Updated Interview</label>
@@ -287,8 +310,16 @@
 				    						<input class="form-check-input" type="checkbox" value="" id="UpJo">
 				    						<label class="form-check-label" for="UpJo">Updated Job</label>
 			    						</div>
+			    						<br>
+
+			    						<label for="UpIndustry">Updated Industry</label>
+			    						<input class="form-control" id="UpIndustry">
+
+			    						<label for="UpPosition">Updated Position</label>
+			    						<input class="form-control" id="UpPosition">
 
 			  						  </div>
+			  						 </form> 
 								    </div>
 
 							        <div class="modal-footer">
@@ -305,18 +336,20 @@
 		      				   	  </div>
 
 							      <div class="modal-body">
-							       <div class="form-group">
-								       <label for="AssessmentID">Assessment ID</label>
-		    						   <input class="form-control" id="AssessmentID">
-		    						   <label for="AssName">Updated Assessor Name</label>
-		    						   <input class="form-control" id="AssName">
-		    						   <label for="AssType">Updated Assessment Type</label>
-		    						   <input class="form-control" id="AssType">
-		    						   <label for="Date">Updated Date</label>
-		    						   <input class="form-control" id="Date">
-		    						   <label for="Loc">Updated Location</label>
-		    						   <input class="form-control" id="Loc">
-	    						   </div>
+							       <form action="#" class = "assupform">	
+								       <div class="form-group">
+									       <label for="AssessmentID">Assessment ID</label>
+			    						   <input class="form-control" id="AssessmentID">
+			    						   <label for="AssType">Updated Assessment Type</label>
+			    						   <input class="form-control" id="AssType">
+			    						   <label for="Date">Updated Date</label>
+			    						   <input class="form-control" id="Date">
+			    						   <label for="Loc">Updated Location</label>
+			    						   <input class="form-control" id="Loc">
+			    						   <label for="AssName">Updated Assessor Name</label>
+			    						   <input class="form-control" id="AssName">
+		    						   </div>
+		    						</form>   
 							      </div>
 
 						          <div class="modal-footer">
@@ -333,12 +366,16 @@
 			      				  </div>
 
 							      <div class="modal-body">
+							       <form action="#" class = "comupform">	
 							        <label for="CompanyID">Company ID</label>
 								    <input class="form-control" id="CompanyID">
 								    <label for="CompName">Updated Company Name</label>
 								    <input class="form-control" id="CompName">
 								    <label for="ComLink">Updated Link</label>
 								    <input class="form-control" id="ComLink">
+								    <label for="ComCon">Updated Connection Name</label>
+								    <input class="form-control" id="ComCon">
+								   </form> 
 							      </div>
 
 						          <div class="modal-footer">
@@ -382,6 +419,7 @@
 
 
 									  <div class="modal-body">
+									   <form action="#" class = "appdelform">	
 									    <div class="form-group">
 				    					  <label for="ApplicationID">Application ID</label>
 				    					  <input class="form-control" id="ApplicationID">
@@ -390,7 +428,7 @@
 
 
 					                  <div class="modal-footer">
-					                   <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
+					                   <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
 					       	           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					                 </div>
 
@@ -403,14 +441,16 @@
 				      				  </div>
 
 									  <div class="modal-body">
+									   <form action="#" class = "assdelform">
 									    <div class="form-group">
 				    						<label for="AssessmentID">Assessment ID</label>
 				    						<input class="form-control" id="AssessmentID">
 				  						</div>
+				  					   </form>	
 									  </div>
 
 								      <div class="modal-footer">
-								       <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
+								       <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
 							           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 								      </div>
 
@@ -423,14 +463,16 @@
 					      				</div>
 
 									    <div class="modal-body">
+									     <form action="#" class = "comdelform">		
 									      <div class="form-group">
 				    						<label for="CompanyID">Company ID</label>
 				    						<input class="form-control" id="CompanyID">
 				  						  </div>
+				  						 </form> 
 									    </div>
 
 								        <div class="modal-footer">
-								         <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
+								         <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
 								       	 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 								        </div>
 
@@ -451,20 +493,24 @@
 
 				  <div class="table-responsive-sm" style="margin-top:20px">
 					  <table id = "apptable" class="table table-striped table-bordered table-sm" cellspacing="0">
+					  <col style="width:5%">
+					  <col style="width:20%">
+					  <col style="width:25%">
 					  <col style="width:10%">
-					  <col style="width:30%">
-					  <col style="width:25%">
-					  <col style="width:25%">
 					  <col style="width:5%">
 					  <col style="width:5%">
+					  <col style="width:15%">
+					  <col style="width:20%">
 		    			<thead>
 		      				<tr>
 			    				<th>Application ID</th>
-			    				<th>Position</th>
 			   					<th>Company</th>
 			    				<th>Link</th>
+			    				<th>Deadline</th>
 			    				<th>Interview Offered?</th>
 			    				<th>Job Offered?</th>
+			    				<th>Industry</th>
+			    				<th>Position</th>
 		      				</tr>
 		    			</thead>
 		    			<tbody>
@@ -476,6 +522,8 @@
 						        <td>Cell</td>
 						        <td>Cell</td>
 						        <td>Cell</td>
+						        <td>Cell</td>
+						        <td>Cell</td>
 						    </tr>
 
 		      				<tr>
@@ -485,9 +533,13 @@
 						        <td>Cell</td>
 						        <td>Cell</td>
 						        <td>Cell</td>
+						        <td>Cell</td>
+						        <td>Cell</td>
 						    </tr>
 
 					    	<tr>
+						        <td>Cell</td>
+						        <td>Cell</td>
 						        <td>Cell</td>
 						        <td>Cell</td>
 						        <td>Cell</td>
@@ -511,17 +563,17 @@
 				  <div class="table-responsive-sm" style="margin-top:20px">
 					  <table id = "asstable" class="table table-striped table-bordered table-sm">
 					  <col style="width:10%">
-					  <col style="width:30%">
 					  <col style="width:25%">
 					  <col style="width:25%">
 					  <col style="width:10%">
+					  <col style="width:30%">
 		    			<thead>
 		      				<tr>
 			    				<th>Assessment ID</th>
-			    				<th>Assessor Name</th>
-			   					<th>Assessment Type</th>
+			    				<th>Assessment Type</th>
 			    				<th>Date</th>
-			    				<th>Location</th>			
+			    				<th>Location</th>	
+			    				<th>Assessor Name</th>					
 		      				</tr>
 		    			</thead>
 		    			<tbody>
@@ -565,13 +617,15 @@
 			  <div class="table-responsive-sm" style="margin-top:20px">
 				  <table id = "comtable" class="table table-striped table-bordered table-sm">
 				  <col style="width:25%">
-				  <col style="width:40%">
+				  <col style="width:25%">
 				  <col style="width:35%">
+				  <col style="width:15%">
 	    			<thead>
 	      				<tr>
 	      					<th>Company ID</th>
 		    				<th>Company</th>
 		   					<th>Link</th>
+		   					<th>Connection Name</th>
 	      				</tr>
 	    			</thead>
 	    			<tbody>
@@ -580,26 +634,30 @@
 					    	<td>Cell</td>
 					        <td>Cell</td>
 					        <td>Cell</td>
+					        <td>Cell</td>
+
 					    </tr>
 
       					<tr>
 	      					<td>Cell</td>
 					        <td>Cell</td>
 					        <td>Cell</td>
+					        <td>Cell</td>
+
 	     				</tr>
 
 					    <tr>
 					    	<td>Cell</td>
 					        <td>Cell</td>
 					        <td>Cell</td>
+					        <td>Cell</td>
+
 					    </tr>
 
 	    			</tbody>
 	  			  </table>
 	  		  </div>
 	  		  </div>
-
-  			  </div>
 
    			</div>
 
