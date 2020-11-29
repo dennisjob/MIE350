@@ -9,26 +9,6 @@
 	</welcome-file-list>
 	<servlet>
 		<description></description>
-		<display-name>StudentController</display-name>
-		<servlet-name>StudentController</servlet-name>
-		<servlet-class>com.mie.controller.StudentController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>StudentController</servlet-name>
-		<url-pattern>/StudentController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>SearchController</display-name>
-		<servlet-name>SearchController</servlet-name>
-		<servlet-class>com.mie.controller.SearchController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SearchController</servlet-name>
-		<url-pattern>/SearchController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
 		<display-name>LoginServlet</display-name>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.mie.controller.LoginServlet</servlet-class>
