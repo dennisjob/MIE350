@@ -3,7 +3,7 @@ import java.sql.Date;
 public class Application {
 	
 	private int appId;
-	private int companyId;
+	private String company;
 	private int userId;
 	private String url;
 	private Date deadline;
@@ -14,9 +14,9 @@ public class Application {
 	
 	public Application(){}
 	
-	public Application(int appId, int companyId, int userId, String url, Date deadline, int interview, int joboffer, String industry, String position) {
+	public Application(int appId, String company, int userId, String url, Date deadline, int interview, int joboffer, String industry, String position) {
 		this.appId = appId;
-		this.companyId = companyId;
+		this.company = company;
 		this.userId = userId;
 		this.url = url;
 		this.deadline = deadline;
@@ -32,11 +32,11 @@ public class Application {
 	public void setAppId(int appid) {
 		this.appId = appid;
 	}
-	public int getCompanyId() {
-		return companyId;
+	public String getCompany() {
+		return company;
 	}
-	public void setCompanyId(int companyid) {
-		this.companyId = companyid;
+	public void setCompany(String company) {
+		this.company = company;
 	}
 	
 	public int getUserId() {

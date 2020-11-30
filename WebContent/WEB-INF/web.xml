@@ -9,33 +9,13 @@
 	</welcome-file-list>
 	<servlet>
 		<description></description>
-		<display-name>StudentController</display-name>
-		<servlet-name>StudentController</servlet-name>
-		<servlet-class>com.mie.controller.StudentController</servlet-class>
+		<display-name>LoginServlet</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.mie.controller.LoginServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>StudentController</servlet-name>
-		<url-pattern>/StudentController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>SearchController</display-name>
-		<servlet-name>SearchController</servlet-name>
-		<servlet-class>com.mie.controller.SearchController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SearchController</servlet-name>
-		<url-pattern>/SearchController</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<description></description>
-		<display-name>LoginController</display-name>
-		<servlet-name>LoginController</servlet-name>
-		<servlet-class>com.mie.controller.LoginController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>LoginController</servlet-name>
-		<url-pattern>/LoginController</url-pattern>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/LoginServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<description></description>
@@ -48,6 +28,6 @@
 		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
 	<session-config>
-		<session-timeout>15</session-timeout>
+		<session-timeout>25</session-timeout>
 	</session-config>
 </web-app>

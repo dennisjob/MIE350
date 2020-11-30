@@ -13,13 +13,13 @@ import com.mie.util.DbUtil;
 
 public class UserDao {
 	
-	private Connection connection;
+	private static Connection connection;
 
 	public UserDao() {
 		connection = DbUtil.getConnection();
 	}
 	
-	public void addUser(User user) {
+	public static void addUser(User user) {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("insert into Users(Name,Password,Email) values (?, ?, ? )");
@@ -81,7 +81,7 @@ public class UserDao {
 		return users;
 	}
 	
-	public User getUser(String name, String password, String email) {
+	public static User getUser(String name, String password, String email) {
 		User user = new User();
 		try {
 			PreparedStatement preparedStatement = connection
@@ -123,6 +123,62 @@ public class UserDao {
 		}
 
 		return user;
+	}
+	
+	public static User login(User user) {
+		/**
+		 * This method attempts to find the user that is trying to log in by
+		 * first retrieving the email and password entered.
+		 */
+		Statement stmt = null;
+
+		String email = user.getEmail();
+		String password = user.getPassword();
+
+		/**
+		 * Prepare a query that searches the members table in the database
+		 * with the given email and password.
+		 */
+		String searchQuery = "select * from Users where email='"
+				+ email + "' AND password='" + password + "'";
+
+		try {
+			// connect to DB
+			connection = DbUtil.getConnection();
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(searchQuery);
+			boolean more = rs.next();
+
+			/**
+			 * If there are no results from the query, set the User to null.
+			 * The person attempting to log in will be redirected to the home
+			 * page when User is null.
+			 */
+			
+			if (!more) {
+				user = null;
+			}
+
+			/**
+			 * If the query results in an database entry that matches the
+			 * email and password, assign the appropriate information to
+			 * the User object.
+			 */
+			else if (more) {
+				user.setUserId(rs.getInt("UserID"));
+				user.setName(rs.getString("Name"));
+				user.setPassword(rs.getString("Password"));
+				user.setEmail(rs.getString("Email"));
+			}
+		} catch (Exception ex) {
+			System.out.println("Log In failed: An Exception has occurred! "
+					+ ex);
+		}
+		/**
+		 * Return the User object.
+		 */
+		return user;
+
 	}
 
 }
