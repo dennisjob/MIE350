@@ -1,496 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="datatables.min.css">
+    <link rel="stylesheet" href="css/vendor/addons/datatables.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-	 $(document).ready(function () {
-	 $('#apptable').DataTable();
-	 $('#asstable').DataTable();
-	 $('#comtable').DataTable();
-	 $('.dataTables_length').addClass('bs-select');
-	 });	
-    </script>
-
-    <script>
-	 $(document).ready(function () {
-	 $('#asstable').DataTable();
-	 $('#comtable').DataTable();
-	 $('.dataTables_length').addClass('bs-select');
-	 });	
-    </script>
-
-    <script>
-	 $(document).ready(function () {
-	 $('#comtable').DataTable();
-	 $('.dataTables_length').addClass('bs-select');
-	 });	
-    </script>
-
-    <script src="datatables.min.js"></script>
-
+    <script src="js/vendor/addons/datatables.min.js"></script>
+	<script src="js/tables.js"></script>
+	<script src="js/main.js"></script>
+	<link rel="stylesheet" href="css/main.css">
     <title>Tracker</title>
-    <style>
-      #title{
-      	margin-top:30px;
-      	margin-bottom:60px;
-      	margin-left: 25px;
-      }	
 
-	  body {
-	    position: relative;
-	  }
-
-	  ul.nav-pills {
-	    top: 20px;
-	    color: #001244;
-
-	  }
-
-	  .tbtrack{
-	  	margin-left:25px;
-	  }
-
-	  .nav-link {
- 		 color: black !important;
- 		 text-transform: uppercase;
-		}
-
-	  .nav-link.active {
-  		 color: #F7D6BF !important;
-  		 background-color: #318FB5 !important;
-		}
-
-	  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-   		background-color: #005086 !important;
-		}
-
-	  .btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
-   		background-color:  #b30059 !important;
-		}
-
-	  .icon {
-   		color: #001244 !important
-		}
-
-	  .navbar{
-	  	position:fixed;
-	  	height: 100%;
-    	background-color: #F7D6BF;
-    	align-items: normal;
-
-	   }
-
-	   .body{
-	   	margin-left: 175px;
-	   	width: 100%;
-	   	padding-right: 15px;
-	   }
-
-	  table.dataTable thead .sorting:after,
- 	  table.dataTable thead .sorting:before,
-      table.dataTable thead .sorting_asc:after,
-	  table.dataTable thead .sorting_asc:before,
-	  table.dataTable thead .sorting_asc_disabled:after,
-	  table.dataTable thead .sorting_asc_disabled:before,
-	  table.dataTable thead .sorting_desc:after,
-	  table.dataTable thead .sorting_desc:before,
-	  table.dataTable thead .sorting_desc_disabled:after,
-	  table.dataTable thead .sorting_desc_disabled:before {
-  			bottom: .5em;
-	    }
-
-	  .pagination > li > a
-		{
-		    background-color: white;
-		    color: #318FB5;
-		}
-
-		.pagination > li > a:focus,
-		.pagination > li > a:hover,
-		.pagination > li > span:focus,
-		.pagination > li > span:hover
-		{
-		    color: #5a5a5a;
-		    background-color: #eee;
-		    border-color: #ddd;
-		}
-
-		.pagination > .active > a
-		{
-		    color: #F7D6BF;
-		    background-color: #318FB5 !important;
-		    border: solid 1px #318FB5 !important;
-		}
-
-		.pagination > .active > a:hover
-		{
-		    background-color: #318FB5 !important;
-		    border: solid 1px #318FB5;
-		}
-
-  </style>
 </head>
 
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
 	<%@ include file="navbar.jsp"%>
-
-	<nav class = "navbar" id="myScrollspy" >
-				    <ul class="nav nav-pills flex-column custom">
-				      <li class="nav-item">
-				        <a class="nav-link active" href="#Applications">Applications</a>
-				      </li>
-				      <li class="nav-item">
-				        <a class="nav-link" href="#Assessments">Assessments</a>
-				      </li>
-				      <li class="nav-item">
-				      	<a class="nav-link" href="#Companies">Companies</a>
-				      </li>
-				    </ul>
-				    <hr class="d-sm-none">
-		    </nav>
+	<%@ include file="add_tracker.jsp"%>
+	<%@ include file="update_tracker.jsp"%>
+	<%@ include file="delete_tracker.jsp"%>
 
 	<div class="container-fluid">
 		<div class="row">
-			
-
-		    <div class="body">	
-	      	  <h2 class="display-4 text-left" id="title" >Personal Tracker</h2>
+			<div class="col-lg-2">
+				<nav class = "navbar" id="myScrollspy" style="background-color: #f7d6bf;">
+				    <ul class="nav flex-column custom">
+				      <li class="nav-item">
+				        <a class="nav-link active" href="#Applications" style="color: #005086">Applications</a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#Assessments" style="color: #005086">Assessments</a>
+				      </li>
+				      <li class="nav-item">
+				      	<a class="nav-link" href="#Companies" style="color: #005086">Companies</a>
+				      </li>
+				    </ul>
+				    <hr class="d-sm-none">
+		    	</nav>
+			</div>
+		    <div class="col-lg-9">
+		    	<div class="body">	
+	      	  <h2 class="display-4 text-left" id="title" style="padding-top: 20px;">Personal Tracker</h2>
 	       	  <hr>
 		      <br>
-
-		      <div class = "tbtrack" id = "trackbuttons" style = "margin-top:-25px">
-		      	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalAdd">
+		      <p class="font-weight-light text-justify" style="line-height: 2;">
+               Welcome ${name}, to your personal tracker! Here you'll keep track of the most important information you need throughout
+               your job search. You can keep track of any application you pland on sending or have already sent it. For every application,
+               you can keep track of it's deadline, if you got an interview, the industry, and more. Assessments let you track interviews, 
+               tests and other types of assessments along with their date, location, and name of the assessor. Finally, track what companies 
+               you want to apply to make sure you remember what you're interested in.
+              </p>
+              <br>
+              <p class="font-weight-light text-justify" style="line-height: 2;">Use the buttons below to add to your tracker!</p>
+		      <br>
+		   	<div class = "tbtrack" id = "trackbuttons" style = "margin-top:-25px">
+		      	<button type="button" class="btn btn-dark btn-md" data-toggle="modal" data-target="#myModalAdd">
 	  				Track Item
 				</button>
-
-				<div class="modal" id="myModalAdd">
-	 				  <div class="modal-dialog">
-	   					 <div class="modal-content">
-		   					 	<ul class="nav nav-tabs" role="tablist">
-								    <li class="nav-item">
-								      <a class="nav-link active" data-toggle="tab" href="#appadd">Application</a>
-								    </li>
-								    <li class="nav-item">
-								      <a class="nav-link" data-toggle="tab" href="#assadd">Assessment</a>
-								    </li>
-								    <li class="nav-item">
-								      <a class="nav-link" data-toggle="tab" href="#comadd">Company</a>
-								    </li>
-							  	</ul>
-
-							  	<div class="tab-content">
-								    <div id="appadd" class="container tab-pane active"><br>
-
-								      <div class="modal-header">
-		        						<h4 class="modal-title">Input Application ID</h4>
-		      						  </div>
-
-
-									  <div class="modal-body">
-									    <form action="#" class = "appidform">
-										    <div class="form-group">
-					    					  <label for="ApplicationID">Application ID</label>
-					    					  <input class="form-control" id="ApplicationID">
-					  						</div>
-					  					</form>
-									  </div>
-
-
-					                  <div class="modal-footer">
-					                   <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
-					       	           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					                 </div>
-
-								    </div>
-
-								    <div id="assadd" class="container tab-pane fade"><br>
-
-								      <div class="modal-header">
-				        				<h4 class="modal-title">Input Assessment ID</h4>
-				      				  </div>
-
-									  <div class="modal-body">
-									   <form action="#" class = "assidform">
-									    <div class="form-group">
-				    						<label for="AssessmentID">Assessment ID</label>
-				    						<input class="form-control" id="AssessmentID">
-				  						</div>
-				  					   </form>	
-									  </div>
-
-								      <div class="modal-footer">
-								       <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
-							           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								      </div>
-
-								    </div>
-
-								    <div id="comadd" class="container tab-pane fade"><br>
-
-								        <div class="modal-header">
-					        				<h4 class="modal-title">Input Company ID</h4>
-					      				</div>
-
-									    <div class="modal-body">
-									     <form action="#" class = "compidform">	
-									      <div class="form-group">
-				    						<label for="CompanyID">Company ID</label>
-				    						<input class="form-control" id="CompanyID">
-				  						  </div>
-				  						 </form> 
-									    </div>
-
-								        <div class="modal-footer">
-								         <button type="button" class="btn btn-success" data-dismiss="modal">Enter</button>
-								       	 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-
-								    </div>
-								</div>
-
-		   					 </div>
-	   					 </div>
-   					  </div>
-
-				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalUp">
+				<button type="button" class="btn btn-dark btn-md" data-toggle="modal" data-target="#myModalUp">
 	  				Update Item
 				</button>
-
-				<div class="modal" id="myModalUp">
-	 				  <div class="modal-dialog">
-	   					 <div class="modal-content">
-	   					 	<ul class="nav nav-tabs" role="tablist">
-							    <li class="nav-item">
-							      <a class="nav-link active" data-toggle="tab" href="#appup">Application</a>
-							    </li>
-							    <li class="nav-item">
-							      <a class="nav-link" data-toggle="tab" href="#assup">Assessment</a>
-							    </li>
-							    <li class="nav-item">
-							      <a class="nav-link" data-toggle="tab" href="#comup">Company</a>
-							    </li>
-							 </ul>
-
-							 <div class="tab-content">
-							 	<div id="appup" class="container tab-pane active"><br>
-
-							        <div class="modal-header">
-				        				<h4 class="modal-title">Input Updated Application Details</h4>
-				      			    </div>
-
-								    <div class="modal-body">
-								     <form action="#" class = "appupform">		
-								      <div class="form-group">
-			    						<label for="ApplicationID">Application ID</label>
-			    						<input class="form-control" id="ApplicationID">
-			    						<label for="UpCompany">Updated Company</label>
-			    						<input class="form-control" id="UpCompany">
-			    						<label for="UpLink">Updated Link</label>
-			    						<input class="form-control" id="UpLink">
-			    						<label for="UpDeadline">Updated Deadline</label>
-			    						<input class="form-control" id="UpDeadline">
-			    					
-			    						<br>
-			    						<div class="form-check">
-				    						<input class="form-check-input" type="checkbox" value="" id="UpIn">
-				    						<label class="form-check-label" for="UpIn">Updated Interview</label>
-			    						</div>
-
-			    						<div class="form-check">
-				    						<input class="form-check-input" type="checkbox" value="" id="UpJo">
-				    						<label class="form-check-label" for="UpJo">Updated Job</label>
-			    						</div>
-			    						<br>
-
-			    						<label for="UpIndustry">Updated Industry</label>
-			    						<input class="form-control" id="UpIndustry">
-
-			    						<label for="UpPosition">Updated Position</label>
-			    						<input class="form-control" id="UpPosition">
-
-			  						  </div>
-			  						 </form> 
-								    </div>
-
-							        <div class="modal-footer">
-							         <button type="button" class="btn btn-success" data-dismiss="modal">Update</button>
-							       	 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-							        </div>
-
-							    </div>
-
-							    <div id="assup" class="container tab-pane fade"><br>
-
-							      <div class="modal-header">
-			        				<h4 class="modal-title">Input Updated Assessment Details</h4>
-		      				   	  </div>
-
-							      <div class="modal-body">
-							       <form action="#" class = "assupform">	
-								       <div class="form-group">
-									       <label for="AssessmentID">Assessment ID</label>
-			    						   <input class="form-control" id="AssessmentID">
-			    						   <label for="AssType">Updated Assessment Type</label>
-			    						   <input class="form-control" id="AssType">
-			    						   <label for="Date">Updated Date</label>
-			    						   <input class="form-control" id="Date">
-			    						   <label for="Loc">Updated Location</label>
-			    						   <input class="form-control" id="Loc">
-			    						   <label for="AssName">Updated Assessor Name</label>
-			    						   <input class="form-control" id="AssName">
-		    						   </div>
-		    						</form>   
-							      </div>
-
-						          <div class="modal-footer">
-						           <button type="button" class="btn btn-success" data-dismiss="modal">Update</button>
-						       	   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						          </div>
-
-							    </div>
-
-							    <div id="comup" class="container tab-pane fade"><br>
-
-							      <div class="modal-header">
-			        				<h4 class="modal-title">Input Updated Company Details</h4>
-			      				  </div>
-
-							      <div class="modal-body">
-							       <form action="#" class = "comupform">	
-							        <label for="CompanyID">Company ID</label>
-								    <input class="form-control" id="CompanyID">
-								    <label for="CompName">Updated Company Name</label>
-								    <input class="form-control" id="CompName">
-								    <label for="ComLink">Updated Link</label>
-								    <input class="form-control" id="ComLink">
-								    <label for="ComCon">Updated Connection Name</label>
-								    <input class="form-control" id="ComCon">
-								   </form> 
-							      </div>
-
-						          <div class="modal-footer">
-						           <button type="button" class="btn btn-success" data-dismiss="modal">Update</button>
-						       	   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-						          </div>
-
-							    </div>
-
-							 </div>
-	   					 </div>
-   					  </div>
-				</div>
-
-
-				<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModalDel">
+				<button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#myModalDel">
 	  				Delete Item
 				</button>
-
-				<div class="modal" id="myModalDel">
-	 				  <div class="modal-dialog">
-	   					 <div class="modal-content">
-		   					 	<ul class="nav nav-tabs" role="tablist">
-								    <li class="nav-item">
-								      <a class="nav-link active" data-toggle="tab" href="#appdel">Application</a>
-								    </li>
-								    <li class="nav-item">
-								      <a class="nav-link" data-toggle="tab" href="#assdel">Assessment</a>
-								    </li>
-								    <li class="nav-item">
-								      <a class="nav-link" data-toggle="tab" href="#comdel">Company</a>
-								    </li>
-							  	</ul>
-
-							  	<div class="tab-content">
-								    <div id="appdel" class="container tab-pane active"><br>
-
-								      <div class="modal-header">
-		        						<h4 class="modal-title">Input Application ID</h4>
-		      						  </div>
-
-
-									  <div class="modal-body">
-									   <form action="#" class = "appdelform">	
-									    <div class="form-group">
-				    					  <label for="ApplicationID">Application ID</label>
-				    					  <input class="form-control" id="ApplicationID">
-				  						</div>
-									  </div>
-
-
-					                  <div class="modal-footer">
-					                   <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
-					       	           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-					                 </div>
-
-								    </div>
-
-								    <div id="assdel" class="container tab-pane fade"><br>
-
-								      <div class="modal-header">
-				        				<h4 class="modal-title">Input Assessment ID</h4>
-				      				  </div>
-
-									  <div class="modal-body">
-									   <form action="#" class = "assdelform">
-									    <div class="form-group">
-				    						<label for="AssessmentID">Assessment ID</label>
-				    						<input class="form-control" id="AssessmentID">
-				  						</div>
-				  					   </form>	
-									  </div>
-
-								      <div class="modal-footer">
-								       <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
-							           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								      </div>
-
-								    </div>
-
-								    <div id="comdel" class="container tab-pane fade"><br>
-
-								        <div class="modal-header">
-					        				<h4 class="modal-title">Input Company ID</h4>
-					      				</div>
-
-									    <div class="modal-body">
-									     <form action="#" class = "comdelform">		
-									      <div class="form-group">
-				    						<label for="CompanyID">Company ID</label>
-				    						<input class="form-control" id="CompanyID">
-				  						  </div>
-				  						 </form> 
-									    </div>
-
-								        <div class="modal-footer">
-								         <button type="button" class="btn btn-success" data-dismiss="modal">Delete</button>
-								       	 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								        </div>
-
-								    </div>
-								</div>
-
-		   					 </div>
-	   					 </div>
-   					  </div>
-
 			</div>
-
 			<hr>
-
+			<br>
 		      <div class="tbtrack" id="Applications">
 		      <h4 class="display-6 text-left" style="margin-bottom:30px" ><i class="fas fa-copy fa-lg icon"></i> Applications</h4>
 		      <h6 class="display-6 text-left">Displays all tracked application information.</h6>
-
 				  <div class="table-responsive-sm" style="margin-top:20px">
 					  <table id = "apptable" class="table table-striped table-bordered table-sm" cellspacing="0">
 					  <col style="width:5%">
@@ -501,53 +86,31 @@
 					  <col style="width:5%">
 					  <col style="width:15%">
 					  <col style="width:20%">
-		    			<thead>
+		    			<thead class="thead-dark">
 		      				<tr>
-			    				<th>Application ID</th>
-			   					<th>Company</th>
-			    				<th>Link</th>
-			    				<th>Deadline</th>
-			    				<th>Interview Offered?</th>
-			    				<th>Job Offered?</th>
-			    				<th>Industry</th>
-			    				<th>Position</th>
+			    				<th class="col">Application ID</th>
+			   					<th class="col">Company</th>
+			    				<th class="col">Link</th>
+			    				<th class="col">Deadline</th>
+			    				<th class="col">Interview Offered?</th>
+			    				<th class="col">Job Offered?</th>
+			    				<th class="col">Industry</th>
+			    				<th class="col">Position</th>
 		      				</tr>
 		    			</thead>
 		    			<tbody>
-
+							<c:forEach items="${applications}" var="application">
 						    <tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
+						        <td><c:out value="${application.getAppId()}"/></td>
+						        <td><c:out value="${application.getCompany()}"/></td>
+						        <td><c:out value="${application.getUrl()}"/></td>
+						        <td><c:out value="${application.getDeadline()}"/></td>
+						        <td><c:out value="${application.getInterview()}"/></td>
+						        <td><c:out value="${application.getJob()}"/></td>
+						        <td><c:out value="${application.getIndustry()}"/></td>
+						        <td><c:out value="${application.getPosition()}"/></td>
 						    </tr>
-
-		      				<tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						    </tr>
-
-					    	<tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						    </tr>
-
+						    </c:forEach>
 		    			</tbody>
 		  			  </table>
 	  			  </div>
@@ -567,41 +130,25 @@
 					  <col style="width:25%">
 					  <col style="width:10%">
 					  <col style="width:30%">
-		    			<thead>
+		    			<thead class="thead-dark">
 		      				<tr>
-			    				<th>Assessment ID</th>
-			    				<th>Assessment Type</th>
-			    				<th>Date</th>
-			    				<th>Location</th>	
-			    				<th>Assessor Name</th>					
+			    				<th class="col">Assessment ID</th>
+			    				<th class="col">Assessment Type</th>
+			    				<th class="col">Date</th>
+			    				<th class="col">Location</th>	
+			    				<th class="col">Assessor Name</th>					
 		      				</tr>
 		    			</thead>
 		    			<tbody>
-
+							<c:forEach items="${assessments}" var="assessment">
 						    <tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
+						        <td><c:out value="${assessment.getRoundId()}"/></td>
+						        <td><c:out value="${assessment.getRoundType()}"/></td>
+						        <td><c:out value="${assessment.getDateTime()}"/></td>
+						        <td><c:out value="${assessment.getLocation()}"/></td>
+						        <td><c:out value="${assessment.getAssessorName()}"/></td>
 						    </tr>
-
-	      					<tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						    </tr>
-
-						   	<tr>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						        <td>Cell</td>
-						    </tr>
-
+						    </c:forEach>
 		    			</tbody>
 		  			  </table>
 	  			  </div>
@@ -620,49 +167,32 @@
 				  <col style="width:25%">
 				  <col style="width:35%">
 				  <col style="width:15%">
-	    			<thead>
+	    			<thead class="thead-dark">
 	      				<tr>
-	      					<th>Company ID</th>
-		    				<th>Company</th>
-		   					<th>Link</th>
-		   					<th>Connection Name</th>
+	      					<th class="col">Company ID</th>
+		    				<th class="col">Company</th>
+		   					<th class="col">Link</th>
+		   					<th class="col">Connection Name</th>
 	      				</tr>
 	    			</thead>
 	    			<tbody>
-
-				    	<tr>
-					    	<td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-
+						<c:forEach items="${companies}" var="company">
+						<tr>
+					    	<td><c:out value="${company.getCompanyId()}"/></td>
+					        <td><c:out value="${company.getName()}"/></td>
+					        <td><c:out value="${company.getUrl()}"/></td>
+					        <td><c:out value="${company.getConnection()}"/></td>
 					    </tr>
-
-      					<tr>
-	      					<td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-
-	     				</tr>
-
-					    <tr>
-					    	<td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-					        <td>Cell</td>
-
-					    </tr>
-
+						</c:forEach>
 	    			</tbody>
 	  			  </table>
 	  		  </div>
 	  		  </div>
 
    			</div>
-
-
+		    </div>
+		    <div class="col-lg-1"></div>
+    	</div>
     </div>
-
 </body>
 </html>

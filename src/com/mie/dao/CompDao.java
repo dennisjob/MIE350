@@ -21,12 +21,12 @@ public class CompDao {
 	public void addCompany(Company comp) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into Company(CompanyID,UserID,CompName,CompLink,ConnectionName) values (?, ?, ?, ?, ?)");
-			preparedStatement.setInt(1, comp.getCompanyId());
-			preparedStatement.setInt(2, comp.getUserId());
-			preparedStatement.setString(3, comp.getName());
-			preparedStatement.setString(4, comp.getUrl());
-			preparedStatement.setString(5, comp.getConnection());
+					.prepareStatement("insert into Company(UserID,CompName,CompLink,ConnectionName) values (?, ?, ?, ?)");
+			//preparedStatement.setInt(1, comp.getCompanyId());
+			preparedStatement.setInt(1, comp.getUserId());
+			preparedStatement.setString(2, comp.getName());
+			preparedStatement.setString(3, comp.getUrl());
+			preparedStatement.setString(4, comp.getConnection());
 			
 			preparedStatement.executeUpdate();
 
@@ -56,6 +56,7 @@ public class CompDao {
 			preparedStatement.setString(2, comp.getName());
 			preparedStatement.setString(3, comp.getUrl());
 			preparedStatement.setString(4, comp.getConnection());
+			System.out.println(comp.getConnection());
 			preparedStatement.setInt(5, comp.getCompanyId());
 			
 			
@@ -91,8 +92,7 @@ public class CompDao {
 	public List<Company> getUserCompanies(int userid) {
 		List<Company> usercomps = new ArrayList<Company>();
 		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from Company where UserID=?");
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from Company where UserID=?");
 			preparedStatement.setInt(1, userid);
 			ResultSet rs = preparedStatement.executeQuery();
 

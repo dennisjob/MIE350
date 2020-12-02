@@ -21,16 +21,16 @@ public class AppDao {
 	public void addApplication(Application app) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into JobApplication(JobAppID,CompName,UserID,LinktoApp,AppDeadline,InterOffer,JobOffer,Industry,Position) values (?, ?, ?, ?, ?, ?, ?, ?, ? )");
-			preparedStatement.setInt(1, app.getAppId());
-			preparedStatement.setString(2, app.getCompany());
-			preparedStatement.setInt(3, app.getUserId());
-			preparedStatement.setString(4, app.getUrl());
-			preparedStatement.setDate(5, app.getDeadline());
-			preparedStatement.setInt(6, app.getInterview());
-			preparedStatement.setInt(7, app.getJob());
-			preparedStatement.setString(8, app.getIndustry());
-			preparedStatement.setString(9, app.getPosition());
+					.prepareStatement("insert into JobApplication(CompName,UserID,LinktoApp,AppDeadline,InterOffer,JobOffer,Industry,Position) values (?, ?, ?, ?, ?, ?, ?, ? )");
+			//preparedStatement.setInt(1, app.getAppId());
+			preparedStatement.setString(1, app.getCompany());
+			preparedStatement.setInt(2, app.getUserId());
+			preparedStatement.setString(3, app.getUrl());
+			preparedStatement.setDate(4, app.getDeadline());
+			preparedStatement.setInt(5, app.getInterview());
+			preparedStatement.setInt(6, app.getJob());
+			preparedStatement.setString(7, app.getIndustry());
+			preparedStatement.setString(8, app.getPosition());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -100,8 +100,8 @@ public class AppDao {
 	public List<Application> getUserApps(int userid) {
 		List<Application> userapps = new ArrayList<Application>();
 		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from JobApplication where UserID=?");
+			System.out.println(connection);
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from JobApplication where UserID=?");
 			preparedStatement.setInt(1, userid);
 			ResultSet rs = preparedStatement.executeQuery();
 

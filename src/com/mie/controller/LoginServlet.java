@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.mie.dao.UserDao;
 import com.mie.model.User;
 
-public class LoginServlet {
+public class LoginServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, java.io.IOException {
@@ -38,22 +38,31 @@ public class LoginServlet {
 				session.setAttribute("userId", user.getUserId());
 				session.setAttribute("name", user.getName());
 				session.setAttribute("email", user.getEmail());
+				request.setAttribute("currentSessionUser", user);
+				request.setAttribute("userId", user.getUserId());
+				request.setAttribute("name", user.getName());
+				request.setAttribute("email", user.getEmail());
+				
+				RequestDispatcher rd=request.getRequestDispatcher("tracker");
+				rd.forward(request, response);
 				/**
 				 * Redirect to the logged-in home page.
 				 */
-				response.sendRedirect("tracker.jsp");
+//				response.sendRedirect("tracker.jsp");
 
 				/**
 				 * Set a timeout variable of 1500 seconds (25 minutes) for this
 				 * member who has logged into the system.
 				 */
-				session.setMaxInactiveInterval(1500);
+//				session.setMaxInactiveInterval(1500);
 			} else {
 				/**
 				 * Forwards information to the front end that the login was invalid.
 				 */
-				RequestDispatcher view = request.getRequestDispatcher("/landing.jsp");
-				request.setAttribute("validLogin", false);
+				String inv = "invalid";
+				request.setAttribute("validLogin", inv);
+				RequestDispatcher view = request.getRequestDispatcher("landing.jsp");
+//				request.setAttribute("validLogin", false);
 				view.forward(request, response);
 			}
 		} catch (Throwable theException) {
