@@ -20,7 +20,7 @@ public class PostDao {
 		connection = DbUtil.getConnection();
 	}
 	
-	public void addPst(Post post) {
+	public void addPost(Post post) {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("insert into Posts(PostID,PostTime,UserID,GroupID,PostContent,LinkToPost) values (?, ?, ?, ?, ?, ?)");
@@ -179,8 +179,6 @@ public class PostDao {
 
 		return post;
 	}
-	
-	
 	
 	
 	
