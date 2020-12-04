@@ -29,3 +29,35 @@
     });
     }, false);
 })();
+ 
+function upInt() {
+ 	if (document.getElementById("UpIn").value == 1) {
+ 	document.getElementById("UpIn").value = 0;
+ } else {
+ 	document.getElementById("UpIn").value = 1;
+ };
+}
+ 
+function upJob() {
+ 	if (document.getElementById("UpJo").value == 1) {
+ 	document.getElementById("UpJo").value = 0;
+ } else {
+ 	document.getElementById("UpJo").value = 1;
+     };
+}
+
+function addInt() {
+ 	if (document.getElementById("addIn").value == 1) {
+ 	document.getElementById("addIn").value = 0;
+ } else {
+ 	document.getElementById("addIn").value = 1;
+ };
+}
+ 
+function addJob() {
+ 	if (document.getElementById("addJo").value == 1) {
+ 	document.getElementById("addJo").value = 0;
+ } else {
+ 	document.getElementById("addJo").value = 1;
+     };
+}

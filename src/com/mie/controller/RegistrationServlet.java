@@ -1,6 +1,8 @@
 package com.mie.controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.mie.dao.UserDao;
 import com.mie.model.User;
 
-public class RegistrationServlet {
+public class RegistrationServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, java.io.IOException {
@@ -36,10 +38,18 @@ public class RegistrationServlet {
 			session.setAttribute("userId", user.getUserId());
 			session.setAttribute("name", user.getName());
 			session.setAttribute("email", user.getEmail());
-			/**
-			 * Redirect to the members-only home page.
-			 */
-			response.sendRedirect("tracker.jsp");
+//			/**
+//			 * Redirect to the members-only home page.
+//			 */
+//			response.sendRedirect("tracker.jsp");
+			
+			request.setAttribute("currentSessionUser", user);
+			request.setAttribute("userId", user.getUserId());
+			request.setAttribute("name", user.getName());
+			request.setAttribute("email", user.getEmail());
+			
+			RequestDispatcher rd=request.getRequestDispatcher("tracker");
+			rd.forward(request, response);
 
 			/**
 			 * Set a timeout variable of 1500 seconds (25 minutes) for this

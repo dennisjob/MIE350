@@ -61,6 +61,7 @@ public class RoundDao {
 			preparedStatement.setInt(5, round.getUserId());
 			preparedStatement.setInt(6, round.getCompanyId());
 			preparedStatement.setString(7, round.getAssessorName());
+			preparedStatement.setInt(8, round.getRoundId());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -96,8 +97,7 @@ public class RoundDao {
 	public List<Round> getUsersRounds(int userId) {
 		List<Round> rounds = new ArrayList<Round>();
 		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from Assessment where UserID=?");
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from Assessment where UserID=?");
 			preparedStatement.setInt(1, userId);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {

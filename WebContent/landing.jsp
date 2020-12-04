@@ -17,7 +17,7 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="100">
     <nav class="navbar navbar-expand-lg" style="padding-top: 25px; padding-bottom: 25px; background-color: #b0cac7; box-shadow: 0px 12px 10px -5px rgba(0,0,0,0.15);">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="landing.jsp">
             <img src="img/logo.png" alt="Logo" style="height: 56px; width: 245px;">
         </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,12 @@
         <div class="row" style="padding-top: 50px; padding-bottom: 25px;">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
+            	<%if ((request.getAttribute("validLogin") == "invalid")) { %>
+            	<div class="alert alert-danger alert-dismissible fade show">
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    <strong>Login Failed!</strong> Please make sure you are a registered user or that the password and email you entered are correct.
+				</div>
+            	<% } %>
                 <h1 class="display-2 text-center">On-Track</h1>
                 <br>
                 <h4 class="text-center">An Online Tracker that Supports and Connects Students Through their Job Search</h4>
@@ -157,7 +163,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" class="register" oninput='con_pwd.setCustomValidity(con_pwd.value != pwd.value ? "Passwords do not match." : "")' novalidate>
+                    <form action="RegisterServlet" method="GET" class="register" oninput='con_pwd.setCustomValidity(con_pwd.value != pwd.value ? "Passwords do not match." : "")' novalidate>
                         <div class="form-group">
                             <label for="email">E-Mail:</label>
                             <input type="text" class="form-control" id="email" placeholder="Enter e-mail" name="email" required>
@@ -172,7 +178,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
@@ -196,16 +202,16 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="#" class="sign_in" novalidate>
+                <form action="LoginServlet" method="GET" class="sign_in" novalidate>
                     <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" required>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
