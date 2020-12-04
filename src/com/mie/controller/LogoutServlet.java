@@ -23,7 +23,7 @@ public class LogoutServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 
-		request.getRequestDispatcher("index.jsp").include(request, response);
+		request.getRequestDispatcher("landing.jsp").include(request, response);
 
 		/**
 		 * Invalidate the current member's session and set its status to false.
