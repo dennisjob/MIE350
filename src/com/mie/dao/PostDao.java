@@ -23,7 +23,7 @@ public class PostDao {
 	public void addPost(Post post) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("insert into Posts(PostID,PostTime,UserID,GroupID,PostContent,LinkToPost) values (?, ?, ?, ?, ?, ?)");
+					.prepareStatement("insert into Posts(PostID,Time,UserID,GroupID,PostContent,LinkToPost) values (?, ?, ?, ?, ?, ?)");
 			preparedStatement.setInt(1, post.getPostId());
 			preparedStatement.setTimestamp(2, post.getPostedTime());
 			preparedStatement.setInt(3, post.getGroupId());
@@ -77,7 +77,7 @@ public class PostDao {
 				post.setPostId(rs.getInt("PostID"));
 				post.setAuthorId(rs.getInt("UserID"));
 				post.setGroupId(rs.getInt("GroupID"));
-				post.setPostedTime(rs.getTimestamp("PostTime"));
+				post.setPostedTime(rs.getTimestamp("Time"));
 				post.setContent(rs.getString("PostContent"));
 				post.setUrl(rs.getString("LinkToPost"));
 				posts.add(post);
@@ -99,7 +99,7 @@ public class PostDao {
 				post.setPostId(rs.getInt("PostID"));
 				post.setAuthorId(rs.getInt("UserID"));
 				post.setGroupId(rs.getInt("GroupID"));
-				post.setPostedTime(rs.getTimestamp("PostTime"));
+				post.setPostedTime(rs.getTimestamp("Time"));
 				post.setContent(rs.getString("PostContent"));
 				post.setUrl(rs.getString("LinkToPost"));
 				posts.add(post);
