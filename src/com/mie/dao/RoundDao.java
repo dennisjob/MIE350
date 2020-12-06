@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.mie.model.Round;
@@ -179,6 +180,26 @@ public class RoundDao {
 				e.printStackTrace();
 	}
 		return round;
+	}
+	
+	public HashMap<String, Timestamp> getUsersRoundsByDate(int userId, Timestamp cutoff) {
+		HashMap<String, Timestamp> map = new HashMap<String, Timestamp>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select CompName, Position, AssessType, Date from Assessment as A inner join JobApplication as J on A.JobAppID = J.JobAppID where A.UserID=? and AppDeadline>=?;");
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setTimestamp(2, cutoff);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				String str = rs.getString("CompName") + " " + rs.getString("Position") + " " + rs.getString("AssessType");
+				Timestamp date = rs.getTimestamp("Date");
+				map.put(str, date);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
 	}
 	
 	

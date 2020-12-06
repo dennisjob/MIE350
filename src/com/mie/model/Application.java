@@ -83,5 +83,12 @@ public class Application {
 	public void setPosition(String position){
 		this.position = position;
 	}
+	@Override
+	public String toString() {
+		return "Application [appId=" + appId + ", company=" + company
+				+ ", userId=" + userId + ", url=" + url + ", deadline=" + deadline
+				+ ", interview=" + interview + ", joboffer=" + joboffer
+				+ ", industry=" + industry + ", position=" + position + "]";
+	}
 
 }
