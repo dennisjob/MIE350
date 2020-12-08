@@ -2,6 +2,8 @@ package com.mie.model;
 
 import java.sql.Timestamp;
 
+import com.mie.dao.UserDao;
+
 public class Post {
 	
 	private int postId;
@@ -44,6 +46,13 @@ public class Post {
 	
 	public void setAuthorId (int authorId) {
 		this.authorId = authorId;
+	}
+	
+	public String getAuthorName() {
+		UserDao dao = new UserDao();
+		User user = dao.getUserById(this.authorId);
+		//System.out.println(user.getName());
+		return user.getName();
 	}
 	
 	public Timestamp getPostedTime() {

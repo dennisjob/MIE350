@@ -4,18 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mie.dao.AppDao;
 
-public class StatsServlet {
+public class StatsServlet  extends HttpServlet {
 	
 	final int N = 5; // Number of items that the front-end team wants to display
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, java.io.IOException {
 		AppDao dao = new AppDao();
+		
+		HttpSession session = request.getSession();
+		int userId = (Integer) session.getAttribute("userId");
 		
 		HashMap<String, Integer> compMap = dao.getGroupedAppCounts("CompName");
 		Pair compPair = topFive(compMap);
