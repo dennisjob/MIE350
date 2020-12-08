@@ -45,4 +45,20 @@
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/RegisterServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Groups</servlet-name>
+		<servlet-class>com.mie.controller.GroupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Groups</servlet-name>
+		<url-pattern>/groups</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Posts</servlet-name>
+		<servlet-class>com.mie.controller.PostServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Posts</servlet-name>
+		<url-pattern>/posts</url-pattern>
+	</servlet-mapping>
 </web-app>

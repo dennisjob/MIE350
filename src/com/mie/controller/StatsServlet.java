@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,7 @@ import com.mie.dao.RoundDao;
 import com.mie.model.Application;
 import com.mie.model.Round;
 
-public class StatsServlet {
+public class StatsServlet  extends HttpServlet {
 	
 	private AppDao appDao;
 	private RoundDao roundDao;
