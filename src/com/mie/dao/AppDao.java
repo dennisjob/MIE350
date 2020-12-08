@@ -102,12 +102,11 @@ public class AppDao {
 	public List<Application> getUserApps(int userid) {
 		List<Application> userapps = new ArrayList<Application>();
 		try {
-			System.out.println(connection);
 			PreparedStatement preparedStatement = connection.prepareStatement("select * from JobApplication where UserID=?");
 			preparedStatement.setInt(1, userid);
 			ResultSet rs = preparedStatement.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Application app = new Application();
 				app.setAppId(rs.getInt("JobAppId"));
 				app.setCompany(rs.getString("CompName"));
@@ -184,11 +183,11 @@ public class AppDao {
 		return app;
 	}
 	
-	public HashMap<String, Integer> getGroupedAppCounts(String col) {
+	public HashMap<String, Integer> getGroupedAppCounts(String col, int userId) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("select " + col + ", Count(" + col + ") as Count from JobApplication group by " + col + ";");
+			ResultSet rs = statement.executeQuery("select " + col + ", Count(" + col + ") as Count from JobApplication where UserID = " + userId + " group by " + col + ";");
 			
 			while (rs.next()) {
 				String str = rs.getString(col);
@@ -200,5 +199,68 @@ public class AppDao {
 		}
 		
 		return map;
+	}
+	
+	public HashMap<String, Integer> getGroupedInterviewCounts(String col, int userId) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select " + col + ", Count(" + col + ") as Count from JobApplication where UserID = " + userId + " and InterOffer = 1 group by " + col + ";");
+			
+			while (rs.next()) {
+				String str = rs.getString(col);
+				int count = rs.getInt("Count");
+				map.put(str, count);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	public List<Application> getUserAppsByDate(int userId, Date cutoff) {
+		List<Application> userapps = new ArrayList<Application>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from JobApplication where UserID=? and AppDeadline>=?;");
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setDate(2, cutoff);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				Application app = new Application();
+				app.setAppId(rs.getInt("JobAppId"));
+				app.setCompany(rs.getString("CompName"));
+				app.setUserId(rs.getInt("UserID"));
+				app.setUrl(rs.getString("LinktoApp"));
+				app.setDeadline(rs.getDate("AppDeadline"));
+				app.setInterview(rs.getInt("InterOffer"));
+				app.setJob(rs.getInt("JobOffer"));
+				app.setIndustry(rs.getString("Industry"));
+				app.setPosition(rs.getString("Position"));
+				userapps.add(app);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return userapps;
+	}
+	
+	public int getUserOfferCount(int userId) {
+		int count = 0;
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from JobApplication where UserID=? and JobOffer=1;");
+			preparedStatement.setInt(1, userId);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				count++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return count;
 	}
 }
