@@ -38,7 +38,7 @@ public class GroupServlet extends HttpServlet {
 				dao.addGroup(group, userId);
 				
 			} else if (action.equalsIgnoreCase("delete")) {
-				
+				System.out.println("deleting" + Integer.parseInt((String)request.getParameter("groupId")));
 				dao.deleteGroup(Integer.parseInt((String)request.getParameter("groupId")));
 				
 			} else if (action.equalsIgnoreCase("addMember")) {

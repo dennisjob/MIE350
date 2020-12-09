@@ -1,12 +1,20 @@
 $(document).ready(function () {
+	var companies = $("body").attr("data-companies").slice(1,-1).split(", ");
+    var compCounts = $("body").attr("data-compCounts").slice(1,-1).split(", ");
+    var industriesByApps = $("body").attr("data-industriesByApps").slice(1,-1).split(", ");
+    var industryByAppCounts = $("body").attr("data-industryByAppCounts").slice(1,-1).split(", ");
+    var industriesByInters = $("body").attr("data-industriesByInters").slice(1,-1).split(", ");
+    var industryByInterCounts = $("body").attr("data-industryByInterCounts").slice(1,-1).split(", ");
+    
+    
     var tcomp = document.getElementById('topCompanies').getContext('2d');
     var topC = new Chart(tcomp, {
         type: 'horizontalBar',
         data: {
-            labels: ['Deloitte', 'BMO', 'RBC', 'Google', 'ZS'],
+            labels: companies,
             datasets: [{
                 label: 'Number of Applications',
-                data: [6, 2, 9, 2, 1],
+                data: compCounts,
                 backgroundColor: [
                     'rgba(0, 18, 68, 0.5)',
                     'rgba(176, 202, 109, 0.5)',
@@ -39,10 +47,10 @@ $(document).ready(function () {
     var ind = new Chart(appsByInd, {
         type: 'doughnut',
         data: {
-            labels: ['Consulting', 'Data Analytics', 'Software Engineering', 'Banking', 'Engineering'],
+            labels: industriesByApps,
             datasets: [{
                 label: 'Number of Applications',
-                data: [12, 14, 5, 3, 3],
+                data: industryByAppCounts,
                 backgroundColor: [
                     'rgba(0, 18, 68, 0.5)',
                     'rgba(176, 202, 109, 0.5)',
@@ -66,10 +74,10 @@ $(document).ready(function () {
     var int = new Chart(intByInd, {
         type: 'doughnut',
         data: {
-            labels: ['Consulting', 'Data Analytics', 'Software Engineering', 'Banking', 'Engineering'],
+            labels: industriesByInters,
             datasets: [{
                 label: 'Number of Interviews',
-                data: [1, 4, 1, 2, 5],
+                data: industryByInterCounts,
                 backgroundColor: [
                     'rgba(0, 18, 68, 0.5)',
                     'rgba(176, 202, 109, 0.5)',

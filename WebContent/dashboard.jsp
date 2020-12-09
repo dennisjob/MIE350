@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/main.css">
 <title>On-Track: Performance Dashboard</title>
 </head>
-<body>
+<body data-companies="${companies}" data-compCounts="${compCounts}" data-industriesByApps="${industriesByApps}" data-industryByAppCounts="${industryByAppCounts }" data-industriesByInters="${industriesByInters }" data-industryByInterCounts="${industryByInterCounts }">
 	<%@ include file="navbar.jsp"%>
 	<div class="container-fluid" style="padding-top: 50px;">
         <div class="row">
@@ -47,8 +47,8 @@
                     <h2 style="height: 60px;"><small>Number of Tracked Applications</small></h2>
                     <br>
                     <div style="height: 80px;">
-                        <p><span class="font-weight-bold">Past:</span> 32</p>
-                        <p><span class="font-weight-bold">Upcoming:</span> 12</p>
+                        <p><span class="font-weight-bold">Past:</span> ${pastAppsNum}</p>
+                        <p><span class="font-weight-bold">Upcoming:</span> ${upcomingAppsNum}</p>
                     </div>
                 </div>
             </div>
@@ -57,8 +57,8 @@
                     <h2 style="height: 60px;"><small>Number of Tracked Assessments</small></h2>
                     <br>
                     <div style="height: 80px;">
-                        <p><span class="font-weight-bold">Past:</span> 9</p>
-                        <p><span class="font-weight-bold">Upcoming:</span> 3</p>                    
+                        <p><span class="font-weight-bold">Past:</span> ${pastAssNum }</p>
+                        <p><span class="font-weight-bold">Upcoming:</span> ${upcomingAssNum }</p>                    
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                     <h2 style="height: 60px;"><small>Number of Tracked Companies</small></h2>
                     <br>
                     <div style="height: 80px;">
-                        <p><span class="font-weight-bold">Total:</span> 18</p>
+                        <p><span class="font-weight-bold">Total:</span> ${compsNum}</p>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <h2 style="height: 60px;"><small>Conversion Rate</small></h2>
                     <br>
                     <div style="height: 80px;">
-                    <p><span class="font-weight-bold">Total: </span>3%</p>
+                    <p><span class="font-weight-bold">Total: </span>${conversionRate }%</p>
                     </div>
                 </div>
             </div>
@@ -85,15 +85,15 @@
         <div class="row" style="padding-top: 80px;">
             <div class="col-lg-1"></div>
             <div class="col-lg-5 align-center">
-                <h2 class="text-center"><small>Top 5 Companies by Application Volume</small></h2>
-                <canvas id="topCompanies" width="400" height="400"></canvas>
+                <h2 class="text-center"><small>Top Companies by Application Volume</small></h2>
+                <canvas id="topCompanies" width="380" height="380"></canvas>
             </div>
             <div class="col-lg-5">
-                <h4 class="text-center"><small>Top 5 Industries by Application Volume</small></h4>
-                <canvas id="appsByInd"></canvas>
+                <h4 class="text-center"><small>Top Industries by Application Volume</small></h4>
+                <canvas id="appsByInd" style="height: 50"></canvas>
                 <br>
-                <h4 class="text-center"><small>Top 5 Industries by Interview Offer</small></h4>
-                <canvas id="intByInd"></canvas>
+                <h4 class="text-center"><small>Top Industries by Interview Offer</small></h4>
+                <canvas id="intByInd" style="height: 50"></canvas>
             </div>
             <div class="col-lg-1"></div>
         </div>
@@ -104,9 +104,9 @@
                     <h2><small>Upcoming Application Deadlines</small></h2>
                     <br>
                     <div>
-                        <p><span class="font-weight-bold">Software Developer PEY Deloitte:</span> 2020/11/23</p>
-                        <p><span class="font-weight-bold">Associate Consultant EY:</span> 2020/12/01</p>
-                        <p><span class="font-weight-bold">Data Scientist BCG:</span> 2020/12/04</p>
+                    	<c:forEach var="appD" items="${upcomingApps }" varStatus="status">
+                    	<p><span class="font-weight-bold">${appD }:</span> ${upcomingAppDeadlines[status.index]}</p>
+                    	</c:forEach>
                     </div>
                 </div>
             </div>
@@ -115,9 +115,9 @@
                     <h2><small>Upcoming Assessments</small></h2>
                     <br>
                     <div>
-                        <p><span class="font-weight-bold">Environment Canada Interview:</span> 2020/11/20</p>
-                        <p><span class="font-weight-bold">BMO Data Analyst Interview:</span> 2020/12/05</p> 
-                        <p><span class="font-weight-bold">IBM Codality Test:</span> 2020/12/10</p>                   
+                    	<c:forEach var="assD" items="${upcomingAss }" varStatus="status">
+                    	 <p><span class="font-weight-bold">${assD }:</span> ${upcomingAssDeadlines[status.index]}</p>
+                    	</c:forEach>
                     </div>
                 </div>
             </div>

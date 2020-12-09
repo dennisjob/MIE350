@@ -38,16 +38,11 @@ public class PostServlet extends HttpServlet {
 		
 		// start session
 		HttpSession session = request.getSession();
-		int postId;
-		try {
-			postId = (Integer) session.getAttribute("postId");
-		} catch (Exception e) {
-			postId = 0;
-		}
 		int userId = (Integer) session.getAttribute("userId");
 		
 		if (action.equalsIgnoreCase("delete")) {
 			int groupId = Integer.parseInt(request.getParameter("groupId"));
+			int postId = Integer.parseInt(request.getParameter("postId"));
 			dao.deletePost(postId);
 			forward = POSTS; //ask kyle for the name of the page 
 			request.setAttribute("posts", dao.getGroupPosts(groupId));

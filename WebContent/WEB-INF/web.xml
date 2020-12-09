@@ -61,4 +61,12 @@
 		<servlet-name>Posts</servlet-name>
 		<url-pattern>/posts</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Dash</servlet-name>
+		<servlet-class>com.mie.controller.StatsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Dash</servlet-name>
+		<url-pattern>/dashboard</url-pattern>
+	</servlet-mapping>
 </web-app>

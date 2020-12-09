@@ -9,7 +9,7 @@
         <ul class="navbar-nav">
             <li class="nav-item" style="padding-right:120px;"><a class="nav-link" href="groups" style="color: #005086"><i class="fas fa-globe"></i> My Groups</a></li>
             <li class="nav-item" style="padding-right:120px;"><a class="nav-link" href="tracker" style="color: #005086"><i class="fas fa-tasks"></i> Job Tracker</a> </li>
-            <li class="nav-item" style="padding-right:120px;"><a class="nav-link" href="dashboard.jsp" style="color: #005086"><i class="fas fa-chart-bar"></i> Performance Dashboard</a></li>
+            <li class="nav-item" style="padding-right:120px;"><a class="nav-link" href="dashboard" style="color: #005086"><i class="fas fa-chart-bar"></i> Performance Dashboard</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color: #005086">
                     <i class="fas fa-cog"></i>

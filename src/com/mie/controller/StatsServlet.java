@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +20,17 @@ import javax.servlet.http.HttpSession;
 import com.mie.dao.AppDao;
 import com.mie.dao.CompDao;
 import com.mie.dao.RoundDao;
+import com.mie.dao.UserDao;
 import com.mie.model.Application;
 import com.mie.model.Round;
+import com.mie.model.User;
 
-public class StatsServlet  extends HttpServlet {
+public class StatsServlet extends HttpServlet {
 	
 	private AppDao appDao;
 	private RoundDao roundDao;
 	private CompDao compDao;
+	private UserDao userDao;
 	final int N = 5; // Number of items that the front-end team wants to display
 	final int M = 3; // Number of upcoming deadlines that the front-end team wants to display
 	
@@ -33,6 +38,7 @@ public class StatsServlet  extends HttpServlet {
 		appDao = new AppDao();
 		roundDao = new RoundDao();
 		compDao = new CompDao();
+		userDao = new UserDao();
 	}
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,20 +54,20 @@ public class StatsServlet  extends HttpServlet {
 		// Top 5 Companies by Application Volume table
 		HashMap<String, Integer> compMap = appDao.getGroupedAppCounts("CompName", userId);
 		Pair compPair = topFive(compMap);
-		request.setAttribute("companies", compPair.strArr);
-		request.setAttribute("compCounts", compPair.countArr);
+		request.setAttribute("companies", Arrays.toString(compPair.strArr));
+		request.setAttribute("compCounts", Arrays.toString(compPair.countArr));
 		
 		// Top 5 Industries by Application Volume table
 		HashMap<String, Integer> industryByAppsMap = appDao.getGroupedAppCounts("Industry", userId);
 		Pair industryByAppsPair = topFive(industryByAppsMap);
-		request.setAttribute("industriesByApps", industryByAppsPair.strArr);
-		request.setAttribute("industryByAppCounts", industryByAppsPair.countArr);
+		request.setAttribute("industriesByApps", Arrays.toString(industryByAppsPair.strArr));
+		request.setAttribute("industryByAppCounts", Arrays.toString(industryByAppsPair.countArr));
 		
 		// Top 5 Industries by Interview table
 		HashMap<String, Integer> industryByIntersMap = appDao.getGroupedInterviewCounts("Industry", userId);
 		Pair industryByIntersPair = topFive(industryByIntersMap);
-		request.setAttribute("industriesByInters", industryByIntersPair.strArr);
-		request.setAttribute("industryByInterCounts", industryByIntersPair.countArr);
+		request.setAttribute("industriesByInters", Arrays.toString(industryByIntersPair.strArr));
+		request.setAttribute("industryByInterCounts", Arrays.toString(industryByIntersPair.countArr));
 		
 		// Upcoming Application Deadlines (only shows first 3 earliest deadlines from current day) and Counts
 		List<Application> userApps = appDao.getUserAppsByDate(userId, currDate);
@@ -84,6 +90,20 @@ public class StatsServlet  extends HttpServlet {
 		
 		// Conversion Rate (offers divided by applications)
 		request.setAttribute("conversionRate", ((float) appDao.getUserOfferCount(userId) / appDao.getUserApps(userId).size()) * 100);
+	
+		User user = userDao.getUserById(userId);
+		
+		session.setAttribute("currentSessionUser", user);
+		session.setAttribute("userId", user.getUserId());
+		session.setAttribute("name", user.getName());
+		session.setAttribute("email", user.getEmail());
+		request.setAttribute("currentSessionUser", user);
+		request.setAttribute("userId", user.getUserId());
+		request.setAttribute("name", user.getName());
+		request.setAttribute("email", user.getEmail());
+		
+		RequestDispatcher view = request.getRequestDispatcher("dashboard.jsp");
+		view.forward(request, response);
 	}
 	
 	public Pair topFive(HashMap<String, Integer> map) {

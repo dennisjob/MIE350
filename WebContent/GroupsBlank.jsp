@@ -26,33 +26,6 @@
 <title>Groups</title>
 <%@ include file="add_group.jsp" %>
 
-<!--EDIT GROUPS MODAL-->
-<div class="modal" id="EditGroup">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Edit Group</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditGroup">
-                    Delete Group
-                </button>
-                <!--TODO-->
-            </div>
-
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <body>
 <!-- TOP NAV BAR -->
 <%@ include file="navbar.jsp"%>
@@ -61,22 +34,26 @@
             <div class="col-lg-2">
 				<!--SIDE NAV BAR FORMATTING-->
 				<nav class="navbar" id="navbar bg-light" style="background-color: #F7D6BF;">
-				    Add a Group
-				    <button type="button" class="fas fa-plus" data-toggle="modal" data-target="#GroupsAdd">
-				    </button>
+				    <div>
+				    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#GroupsAdd">Add a Group <i class="fas fa-plus"></i></button>
+				    </div>
+				    <div>
 				    <!-- SIDE NAV BAR CONTENTS-->
+				    <hr>
 				    <ul class="navbar-nav">
 				    <c:forEach items="${groups}" var="group">
 				        <li class="nav-item">
 				            <a class="nav-link" href="groups?action=listPosts&groupId=${group.getGroupId()}">
 				            ${group.getName()}
 				            </a>
-				            <button type="button" class="fas fa-ellipsis-h" data-toggle="modal"
-				                data-target="#EditGroup">
-				            </button>
+				            <a href="groups?action=delete&groupId=${group.getGroupId()}" role="button" class="btn btn-danger">
+				            Delete Group <i class="fas fa-ellipsis-h"></i>
+				            </a>
+				            <hr>
 				        </li>
 				    </c:forEach>
-				    </ul>       
+				    </ul> 
+				    </div>       
 				</nav>
 			</div>
             <!-- GROUPS SECTION-->
