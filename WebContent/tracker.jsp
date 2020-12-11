@@ -67,9 +67,6 @@
 				<button type="button" class="btn btn-dark btn-md" data-toggle="modal" data-target="#myModalUp">
 	  				Update Item
 				</button>
-				<button type="button" class="btn btn-danger btn-md" data-toggle="modal" data-target="#myModalDel">
-	  				Delete Item
-				</button>
 			</div>
 			<hr>
 			<br>
@@ -80,12 +77,13 @@
 					  <table id = "apptable" class="table table-striped table-bordered table-sm" cellspacing="0">
 					  <col style="width:5%">
 					  <col style="width:20%">
-					  <col style="width:25%">
+					  <col style="width:20%">
 					  <col style="width:10%">
 					  <col style="width:5%">
 					  <col style="width:5%">
 					  <col style="width:15%">
 					  <col style="width:20%">
+					  <col style="width:5%">
 		    			<thead class="thead-dark">
 		      				<tr>
 			    				<th class="col">Application ID</th>
@@ -96,6 +94,7 @@
 			    				<th class="col">Job Offered?</th>
 			    				<th class="col">Industry</th>
 			    				<th class="col">Position</th>
+			    				<th class="col">Delete</th>
 		      				</tr>
 		    			</thead>
 		    			<tbody>
@@ -109,6 +108,11 @@
 						        <td><c:out value="${application.getJob()}"/></td>
 						        <td><c:out value="${application.getIndustry()}"/></td>
 						        <td><c:out value="${application.getPosition()}"/></td>
+						        <td>
+						        	<a href="tracker?action=DeleteApp&appId=${application.getAppId()}" role="button" class="btn btn-danger">
+							            Delete Application
+							        </a>
+						        </td>
 						    </tr>
 						    </c:forEach>
 		    			</tbody>
@@ -126,17 +130,19 @@
 				  <div class="table-responsive-sm" style="margin-top:20px">
 					  <table id = "asstable" class="table table-striped table-bordered table-sm">
 					  <col style="width:10%">
-					  <col style="width:25%">
+					  <col style="width:20%">
 					  <col style="width:25%">
 					  <col style="width:10%">
 					  <col style="width:30%">
+					  <col style="width:5%">
 		    			<thead class="thead-dark">
 		      				<tr>
 			    				<th class="col">Assessment ID</th>
 			    				<th class="col">Assessment Type</th>
 			    				<th class="col">Date</th>
 			    				<th class="col">Location</th>	
-			    				<th class="col">Assessor Name</th>					
+			    				<th class="col">Assessor Name</th>
+			    				<th class="col">Delete</th>					
 		      				</tr>
 		    			</thead>
 		    			<tbody>
@@ -147,6 +153,11 @@
 						        <td><c:out value="${assessment.getDateTime()}"/></td>
 						        <td><c:out value="${assessment.getLocation()}"/></td>
 						        <td><c:out value="${assessment.getAssessorName()}"/></td>
+						        <td>
+						        	<a href="tracker?action=DeleteRound&roundId=${assessment.getRoundId()}" role="button" class="btn btn-danger">
+							            Delete Assessment
+							        </a>
+						        </td>
 						    </tr>
 						    </c:forEach>
 		    			</tbody>
@@ -163,16 +174,18 @@
 
 			  <div class="table-responsive-sm" style="margin-top:20px">
 				  <table id = "comtable" class="table table-striped table-bordered table-sm">
-				  <col style="width:25%">
+				  <col style="width:20%">
 				  <col style="width:25%">
 				  <col style="width:35%">
 				  <col style="width:15%">
+				  <col style="width:5%">
 	    			<thead class="thead-dark">
 	      				<tr>
 	      					<th class="col">Company ID</th>
 		    				<th class="col">Company</th>
 		   					<th class="col">Link</th>
 		   					<th class="col">Connection Name</th>
+		   					<th class="col">Delete</th>
 	      				</tr>
 	    			</thead>
 	    			<tbody>
@@ -182,6 +195,11 @@
 					        <td><c:out value="${company.getName()}"/></td>
 					        <td><c:out value="${company.getUrl()}"/></td>
 					        <td><c:out value="${company.getConnection()}"/></td>
+					        <td>
+					        	<a href="tracker?action=DeleteCompany&companyId=${company.getComapnyId()}" role="button" class="btn btn-danger">
+						            Delete Assessment
+						        </a>
+					        </td>
 					    </tr>
 						</c:forEach>
 	    			</tbody>
