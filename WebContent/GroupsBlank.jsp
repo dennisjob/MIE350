@@ -60,7 +60,12 @@
             <div class="col-lg-9">
                 <h2 class="display-4 text-left" id="title">Groups</h2>
                 <hr>
-
+				<%if ((request.getAttribute("error") != "none")) { %>
+            	<div class="alert alert-danger alert-dismissible fade show">
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    <strong>${error }</strong>
+				</div>
+            	<% } %>
                 <div class="tbtrack" id="Groups">
                     <h4 class="display-6 text-left" style="margin-bottom:30px"><i class="fas fa-comments"></i> Your
                         Groups

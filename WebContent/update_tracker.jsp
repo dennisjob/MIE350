@@ -31,7 +31,7 @@
    						<input class="form-control" id="UpCompany" placeholder="Enter Company Name" name="company" required>
    						<label for="UpLink">Updated Link</label>
    						<input class="form-control" id="UpLink" placeholder="Enter Link to Application" name="url" required>
-   						<label for="UpDeadline">Updated Deadline</label>
+   						<label for="UpDeadline">Updated Deadline (YYY-MM-DD)</label>
    						<input class="form-control" id="UpDeadline" placeholder="Enter Application Deadline" name="date" required>
    						<br>
    						<div class="form-check">
@@ -68,7 +68,7 @@
 				  		  <input class="form-control" id="AppID" placeholder="Enter Application ID" name="appId" required>
    						   <label for="AssType">Updated Assessment Type</label>
    						   <input class="form-control" id="AssType" placeholder="Enter Assessment Type" name="roundtype" required>
-   						   <label for="Date">Updated Date</label>
+   						   <label for="Date">Updated Date (YYYY-MM-DD HH:MM:SS)</label>
    						   <input class="form-control" id="Date" placeholder="Enter Assessment Time" name="time" required>
    						   <label for="Loc">Updated Location</label>
    						   <input class="form-control" id="Loc" placeholder="Enter Location" name="location" required>

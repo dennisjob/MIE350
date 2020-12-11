@@ -50,6 +50,12 @@
 	      	  <h2 class="display-4 text-left" id="title" style="padding-top: 20px;">Personal Tracker</h2>
 	       	  <hr>
 		      <br>
+		      <%if ((request.getAttribute("error") != "none")) { %>
+            	<div class="alert alert-danger alert-dismissible fade show">
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    <strong>${error }</strong>
+				</div>
+            	<% } %>
 		      <p class="font-weight-light text-justify" style="line-height: 2;">
                Welcome ${name}, to your personal tracker! Here you'll keep track of the most important information you need throughout
                your job search. You can keep track of any application you pland on sending or have already sent it. For every application,
