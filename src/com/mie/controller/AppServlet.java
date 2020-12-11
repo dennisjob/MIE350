@@ -67,6 +67,7 @@ public class AppServlet extends HttpServlet {
 		 * listing of all students in the database.
 		 */
 		String forward = "";
+		String error = "none";
 		String action = request.getParameter("action");
 		System.out.println(action);
 		HttpSession session = request.getSession();
@@ -81,117 +82,156 @@ public class AppServlet extends HttpServlet {
 		
 		if (action!=null) {
 			if (action.equalsIgnoreCase("DeleteApp")) {
-				int appId = Integer.parseInt(request.getParameter("appId"));
-				appdao.deleteApplication(appId);
+				try {
+					int appId = Integer.parseInt(request.getParameter("appId"));
+					appdao.deleteApplication(appId);
+				} catch (Exception e) {
+					error = "Failed to delete app.";
+				}
+				
 				
 			} else if (action.equalsIgnoreCase("InsertApp")) {
-				System.out.println("Inserting App for user" + userId);
-				Application app = new Application();
-				//app.setAppId(Integer.parseInt(request.getParameter("appId")));
-				app.setCompany((request.getParameter("company")));
-				app.setUserId(userId);
-				app.setUrl((request.getParameter("url")));
-				String date = request.getParameter("date");
-				Date date1 = Date.valueOf(date);
-				app.setDeadline(date1);
 				try {
-					app.setInterview(Integer.parseInt(request.getParameter("interview")));
+					System.out.println("Inserting App for user" + userId);
+					Application app = new Application();
+					//app.setAppId(Integer.parseInt(request.getParameter("appId")));
+					app.setCompany((request.getParameter("company")));
+					app.setUserId(userId);
+					app.setUrl((request.getParameter("url")));
+					String date = request.getParameter("date");
+					Date date1 = Date.valueOf(date);
+					app.setDeadline(date1);
+					try {
+						app.setInterview(Integer.parseInt(request.getParameter("interview")));
+					} catch (Exception e) {
+						app.setInterview(0);
+					}
+					try {
+						app.setJob(Integer.parseInt(request.getParameter("joboffer")));
+					} catch (Exception e) {
+						app.setJob(0);
+					}
+					app.setIndustry(request.getParameter("industry"));
+					app.setPosition(request.getParameter("position"));
+					
+					appdao.addApplication(app);
 				} catch (Exception e) {
-					app.setInterview(0);
+					error = "Failed to insert application. Please check that all values entered are valid.";
 				}
-				try {
-					app.setJob(Integer.parseInt(request.getParameter("joboffer")));
-				} catch (Exception e) {
-					app.setJob(0);
-				}
-				app.setIndustry(request.getParameter("industry"));
-				app.setPosition(request.getParameter("position"));
 				
-				appdao.addApplication(app);
 				
 			} else if (action.equalsIgnoreCase("UpdateApp")) {
-				Application app = new Application();
-				app.setAppId(Integer.parseInt(request.getParameter("appId")));
-				app.setCompany((request.getParameter("company")));
-				app.setUserId(userId);
-				app.setUrl((request.getParameter("url")));
-				String date = request.getParameter("date");
-				Date date1 = Date.valueOf(date);
-				app.setDeadline(date1);
 				try {
-					app.setInterview(Integer.parseInt(request.getParameter("interview")));
+					Application app = new Application();
+					app.setAppId(Integer.parseInt(request.getParameter("appId")));
+					app.setCompany((request.getParameter("company")));
+					app.setUserId(userId);
+					app.setUrl((request.getParameter("url")));
+					String date = request.getParameter("date");
+					Date date1 = Date.valueOf(date);
+					app.setDeadline(date1);
+					try {
+						app.setInterview(Integer.parseInt(request.getParameter("interview")));
+					} catch (Exception e) {
+						app.setInterview(0);
+					}
+					try {
+						app.setJob(Integer.parseInt(request.getParameter("joboffer")));
+					} catch (Exception e) {
+						app.setJob(0);
+					}
+					app.setIndustry(request.getParameter("industry"));
+					app.setPosition(request.getParameter("position"));
+					
+					appdao.updateApplication(app);
 				} catch (Exception e) {
-					app.setInterview(0);
+					error = "Failed to update application. Please check that all values entered are valid";
 				}
-				try {
-					app.setJob(Integer.parseInt(request.getParameter("joboffer")));
-				} catch (Exception e) {
-					app.setJob(0);
-				}
-				app.setIndustry(request.getParameter("industry"));
-				app.setPosition(request.getParameter("position"));
-				
-				appdao.updateApplication(app);
 				
 			} else if (action.equalsIgnoreCase("DeleteCompany")) {
-				int companyId = Integer.parseInt(request.getParameter("companyId"));
-				compdao.deleteCompany(companyId);
+				try {
+					int companyId = Integer.parseInt(request.getParameter("companyId"));
+					compdao.deleteCompany(companyId);
+				} catch (Exception e) {
+					error = "Failed to delete company";
+				}
 				
 			} else if (action.equalsIgnoreCase("InsertCompany")) {
-				Company comp = new Company();
-				//comp.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
-				comp.setUserId(userId);
-				comp.setName(request.getParameter("name"));
-				comp.setUrl(request.getParameter("url"));
-				comp.setConnection(request.getParameter("connection"));
-				
-				compdao.addCompany(comp);
+				try {
+					Company comp = new Company();
+					//comp.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
+					comp.setUserId(userId);
+					comp.setName(request.getParameter("name"));
+					comp.setUrl(request.getParameter("url"));
+					comp.setConnection(request.getParameter("connection"));
+					
+					compdao.addCompany(comp);
+				} catch (Exception e) {
+					error = "Failed to insert company. Please check that all values entered are valid";
+				}
 				
 				
 			} else if (action.equalsIgnoreCase("UpdateCompany")) {
-				Company comp = new Company();
-				comp.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
-				comp.setUserId(userId);
-				comp.setName(request.getParameter("name"));
-				comp.setUrl(request.getParameter("url"));
-				comp.setConnection(request.getParameter("connection"));
-				
-				compdao.updateCompany(comp);
+				try {
+					Company comp = new Company();
+					comp.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
+					comp.setUserId(userId);
+					comp.setName(request.getParameter("name"));
+					comp.setUrl(request.getParameter("url"));
+					comp.setConnection(request.getParameter("connection"));
+					
+					compdao.updateCompany(comp);
+				} catch (Exception e) {
+					error = "Failed to update company. Please check that all values entered are valid";
+				}
 				
 			} else if (action.equalsIgnoreCase("DeleteRound")) {
-				int roundId = Integer.parseInt(request.getParameter("roundId"));
-				rounddao.deleteRound(roundId);
+				try {
+					int roundId = Integer.parseInt(request.getParameter("roundId"));
+					rounddao.deleteRound(roundId);
+				} catch (Exception e) {
+					error = "Failed to delete round.";
+				}
 				
 			} else if (action.equalsIgnoreCase("InsertRound")) {
-				Round round = new Round();
-				//round.setRoundId(Integer.parseInt(request.getParameter("roundId")));
-				round.setAppId(Integer.parseInt(request.getParameter("appId")));
-				round.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
-				round.setUserId(userId);
-				String time = request.getParameter("time");
-				Timestamp date = Timestamp.valueOf(time);
-				round.setDateTime(date);
-				round.setRoundType(request.getParameter("roundtype"));
-				round.setLocation(request.getParameter("location"));
-				round.setAssessorName(request.getParameter("assessor"));
-				
-				rounddao.addRound(round);
+				try {
+					Round round = new Round();
+					//round.setRoundId(Integer.parseInt(request.getParameter("roundId")));
+					round.setAppId(Integer.parseInt(request.getParameter("appId")));
+					round.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
+					round.setUserId(userId);
+					String time = request.getParameter("time");
+					Timestamp date = Timestamp.valueOf(time);
+					round.setDateTime(date);
+					round.setRoundType(request.getParameter("roundtype"));
+					round.setLocation(request.getParameter("location"));
+					round.setAssessorName(request.getParameter("assessor"));
+					
+					rounddao.addRound(round);
+				} catch (Exception e) {
+					error = "Failed to insert assessment. Please check that all values entered are valid";
+				}
 				
 				
 			} else if (action.equalsIgnoreCase("UpdateRound")) {
-				Round round = new Round();
-				round.setRoundId(Integer.parseInt(request.getParameter("roundId")));
-				round.setAppId(Integer.parseInt(request.getParameter("appId")));
-				round.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
-				round.setUserId(userId);
-				String time = request.getParameter("time");
-				Timestamp date = Timestamp.valueOf(time);
-				round.setDateTime(date);
-				round.setRoundType(request.getParameter("roundtype"));
-				round.setLocation(request.getParameter("location"));
-				round.setAssessorName(request.getParameter("assessor"));
-				
-				rounddao.updateRound(round);}
+				try {
+					Round round = new Round();
+					round.setRoundId(Integer.parseInt(request.getParameter("roundId")));
+					round.setAppId(Integer.parseInt(request.getParameter("appId")));
+					round.setCompanyId(Integer.parseInt(request.getParameter("companyId")));
+					round.setUserId(userId);
+					String time = request.getParameter("time");
+					Timestamp date = Timestamp.valueOf(time);
+					round.setDateTime(date);
+					round.setRoundType(request.getParameter("roundtype"));
+					round.setLocation(request.getParameter("location"));
+					round.setAssessorName(request.getParameter("assessor"));
+					
+					rounddao.updateRound(round);
+				} catch (Exception e) {
+					error = "Failed to update assessment. Please check that all values entered are valid";
+				}
+			}
 		}	
 		
 		User user = userDao.getUserById(userId);
@@ -209,6 +249,7 @@ public class AppServlet extends HttpServlet {
 		request.setAttribute("applications", appdao.getUserApps(userId));
 		request.setAttribute("companies", compdao.getUserCompanies(userId));
 		request.setAttribute("assessments", rounddao.getUsersRounds(userId));
+		request.setAttribute("error", error);
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
 		view.forward(request, response);

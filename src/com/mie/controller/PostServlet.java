@@ -35,36 +35,45 @@ public class PostServlet extends HttpServlet {
 		
 		String forward = "";
 		String action = request.getParameter("action");
+		String error = "none";
 		
 		// start session
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		
 		if (action.equalsIgnoreCase("delete")) {
-			int groupId = Integer.parseInt(request.getParameter("groupId"));
-			int postId = Integer.parseInt(request.getParameter("postId"));
-			dao.deletePost(postId);
-			forward = POSTS; //ask kyle for the name of the page 
-			request.setAttribute("posts", dao.getGroupPosts(groupId));
-			GroupDao groupDao = new GroupDao();
-			Group group = groupDao.getGroupById(groupId);
-			request.setAttribute("curGroup", group);
+			try {
+				int groupId = Integer.parseInt(request.getParameter("groupId"));
+				int postId = Integer.parseInt(request.getParameter("postId"));
+				dao.deletePost(postId);
+				forward = POSTS; //ask kyle for the name of the page 
+				request.setAttribute("posts", dao.getGroupPosts(groupId));
+				GroupDao groupDao = new GroupDao();
+				Group group = groupDao.getGroupById(groupId);
+				request.setAttribute("curGroup", group);
+			} catch (Exception e) {
+				error = "Failed to delete the post.";
+			}
 			
 		} else if (action.equalsIgnoreCase("create")) {
-			Post post = new Post();
-			int groupId = Integer.parseInt(request.getParameter("groupId"));
-			post.setGroupId(groupId);
-			post.setAuthorId(userId);
-			Date date = new Date();
-			post.setPostedTime(new java.sql.Timestamp(date.getTime()));
-			post.setContent(request.getParameter("content"));
-			post.setUrl(request.getParameter("url"));
-			dao.addPost(post);
-			forward = POSTS; //ask kyle for the name of the page
-			request.setAttribute("posts", dao.getGroupPosts(groupId));
-			GroupDao groupDao = new GroupDao();
-			Group group = groupDao.getGroupById(groupId);
-			request.setAttribute("curGroup", group);
+			try {
+				Post post = new Post();
+				int groupId = Integer.parseInt(request.getParameter("groupId"));
+				post.setGroupId(groupId);
+				post.setAuthorId(userId);
+				Date date = new Date();
+				post.setPostedTime(new java.sql.Timestamp(date.getTime()));
+				post.setContent(request.getParameter("content"));
+				post.setUrl(request.getParameter("url"));
+				dao.addPost(post);
+				forward = POSTS; //ask kyle for the name of the page
+				request.setAttribute("posts", dao.getGroupPosts(groupId));
+				GroupDao groupDao = new GroupDao();
+				Group group = groupDao.getGroupById(groupId);
+				request.setAttribute("curGroup", group);
+			} catch (Exception e) {
+				error = "Failed to create the post. Please ensure that all values entered are valid.";
+			}
 			
 		} 
 		UserDao userDao = new UserDao();
@@ -84,6 +93,7 @@ public class PostServlet extends HttpServlet {
 		List<Group> userGroups = groupdao.getUsersGroups(userId);
 		//System.out.println(userGroups);
 		request.setAttribute("groups", userGroups);
+		request.setAttribute("error", error);
 		
 		
 		RequestDispatcher view = request.getRequestDispatcher(forward);
